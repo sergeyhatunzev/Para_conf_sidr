@@ -701,7 +701,10 @@ with tqdm(unique_lines, desc="Обработка", unit="конфиг") as pbar:
             except:
                 pass
         else:
+            print f("Получаем IP {host_or_ip}")
+            
             ip_str = resolve_to_ipv4(host_or_ip)
+            print f("Получен Ip { ip_str}")
             if ip_str and ipv4_in_ranges(ipaddress.ip_address(ip_str)):
                 final_ip = ip_str
 
