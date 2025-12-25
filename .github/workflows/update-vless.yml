@@ -2,7 +2,7 @@ name: Update Russian VLESS Configs
 
 on:
   schedule:
-    - cron: '0 */1 * * *'   # Каждые 6 часов
+    - cron: '0 */3 * * *'   # Каждые 6 часов
   workflow_dispatch:        # Ручной запуск
 
 jobs:
