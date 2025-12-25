@@ -6,7 +6,7 @@ from tqdm import tqdm
 from collections import OrderedDict
 
 
-# CIDR-диапазоны
+# Твои CIDR-диапазоны
 CIDR_RANGES = [
     ipaddress.ip_network('2.94.122.0/24'),
     ipaddress.ip_network('2.94.149.0/24'),
@@ -563,8 +563,6 @@ CIDR_RANGES = [
     ipaddress.ip_network('217.195.219.0/24'),
 ]
 
-# ===========================================
-
 MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
 
 ADDITIONAL_URLS = [
@@ -597,7 +595,6 @@ ADDITIONAL_URLS = [
 
 GOIDA_URL = 'https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt'
 
-# Функции
 def is_ip_address(host):
     try:
         ipaddress.ip_address(host)
@@ -652,7 +649,6 @@ def get_base_vless(url):
     except:
         return url.strip()
 
-# Имена выходных файлов (будут в корне репозитория)
 sidr_output = 'sidr_vless.txt'
 clean_output = 'clean_vless.txt'
 
@@ -664,9 +660,9 @@ try:
     resp.raise_for_status()
     vless = [l.strip() for l in resp.text.splitlines() if l.strip().startswith('vless://')]
     all_vless_lines.extend(vless)
-    print(f"Основной: {len(vless)} vless")
+    print(f"Основной: {len(vless)} vless конфигов")
 except Exception as e:
-    print(f"Ошибка основного: {e}")
+    print(f"Ошибка основного источника: {e}")
 
 print("Скачиваем дополнительные источники...")
 for i, url in enumerate(ADDITIONAL_URLS, 1):
@@ -675,71 +671,105 @@ for i, url in enumerate(ADDITIONAL_URLS, 1):
         resp.raise_for_status()
         vless = [l.strip() for l in resp.text.splitlines() if l.strip().startswith('vless://')]
         all_vless_lines.extend(vless)
-        print(f"Источник {i}: {len(vless)} vless")
+        print(f"Источник {i}: {len(vless)} vless конфигов")
     except Exception as e:
-        print(f"Ошибка источника {i}: {e}")
+        print(f"Ошибка источника {i} ({url}): {e}")
 
-print(f"\nВсего собрано vless: {len(all_vless_lines)}")
+print(f"\nВсего собрано vless ссылок: {len(all_vless_lines)}")
 
 unique_lines = list(OrderedDict.fromkeys(all_vless_lines))
-print(f"После удаления дубликатов: {len(unique_lines)} уникальных")
+print(f"После удаления полных дубликатов: {len(unique_lines)} уникальных")
+
+print(f"\nОбрабатываем {len(unique_lines)} уникальных конфигов...")
 
 matched_with_ip = []
 
 with tqdm(unique_lines, desc="Обработка", unit="конфиг") as pbar:
     for line in pbar:
-        host_or_ip = extract_host_from_vless(line)
-        if not host_or_ip:
+        if not line.startswith('vless://'):
             continue
 
+        host_or_ip = extract_host_from_vless(line)
+        if host_or_ip is None:
+            continue
+
+        #pbar.write(f"Извлечён хост/IP: {host_or_ip}")
+
         final_ip = None
+        log_message = None
+
         if is_ip_address(host_or_ip):
             try:
                 ip_obj = ipaddress.ip_address(host_or_ip)
-                if ip_obj.version == 4 and ipv4_in_ranges(ip_obj):
-                    final_ip = host_or_ip
+                if ip_obj.version == 6:
+                    #pbar.write(f" → IPv6 → ПРОПУЩЕНО")
+                    continue
+                #pbar.write(f" → Уже IP: {host_or_ip}")
+                if ipv4_in_ranges(ip_obj):
+                    final_ip = hot_or_ip
+                    log_message = f" → {host_or_ip} (уже IP) → В диапазоне → СОХРАНЁН"
+                else:
+                    #pbar.write(f" → {host_or_ip} → НЕ в диапазоне → ПРОПУЩЕНО")
+                    pass
             except:
-                pass
+                continue
         else:
-             # Эти print только для отладки. Если не нужны — закомментируйте или удалите.
-             print(f"Получаем IP для {host_or_ip}")
-    
-             ip_str = resolve_to_ipv4(host_or_ip)
-             print(f"Получен IP: {ip_str}")
-    
-    if ip_str and ipv4_in_ranges(ipaddress.ip_address(ip_str)):
-        final_ip = ip_str
+            ip_str = resolve_to_ipv4(host_or_ip)
+            if ip_str:
+                #pbar.write(f" → Разрешён в IP: {ip_str}")
+                ip_obj = ipaddress.ip_address(ip_str)
+                if ipv4_in_ranges(ip_obj):
+                    final_ip = ip_str
+                    log_message = f" → {host_or_ip} → {ip_str} → В диапазоне → СОХРАНЁН"
+                else:
+                    #pbar.write(f" → {ip_str} → НЕ в диапазоне → ПРОПУЩЕНО")
+                    pass
+            else:
+                #pbar.write(f" → Не удалось разрешить в IPv4 → ПРОПУЩЕНО")
+                continue
 
-        if final_ip:
-            matched_with_ip.append(modify_config(line, final_ip))
+        if final_ip and log_message:
+            pbar.write(log_message)
+            modified_line = modify_config(line, final_ip)
+            matched_with_ip.append(modified_line)
 
 with open(sidr_output, 'w', encoding='utf-8') as f:
     for cfg in matched_with_ip:
         f.write(cfg + '\n')
 
-print(f"\nПодходящих (российские IP): {len(matched_with_ip)}. Сохранено в {sidr_output}")
+print(f"\nНайдено {len(matched_with_ip)} подходящих (российские IP). Сохранено в {sidr_output}")
 
-print("\nДедупликация с GoidaVPN...")
+print("\nСкачиваем конфиги GoidaVPN для дедупликации...")
 goida_bases = set()
 try:
     resp = requests.get(GOIDA_URL)
     resp.raise_for_status()
-    goida_bases = {get_base_vless(l.strip()) for l in resp.text.splitlines() if l.strip().startswith('vless://')}
-    print(f"Загружено баз Goida: {len(goida_bases)}")
+    goida_lines = resp.text.splitlines()
+    goida_bases = {get_base_vless(l.strip()) for l in goida_lines if l.strip().startswith('vless://')}
+    print(f"Загружено {len(goida_bases)} уникальных базовых конфигов Goida")
 except Exception as e:
-    print(f"Ошибка Goida: {e}. Пропуск дедупликации.")
+    print(f"Ошибка загрузки Goida: {e}")
+    print("Пропускаем дедупликацию.")
 
 if goida_bases:
-    clean_configs = [cfg for cfg in matched_with_ip if get_base_vless(cfg) not in goida_bases]
-    duplicates = len(matched_with_ip) - len(clean_configs)
+    clean_configs = []
+    duplicates = 0
+    with tqdm(matched_with_ip, desc="Дедупликация Goida", unit="конфиг") as pbar:
+        for line in pbar:
+            base = get_base_vless(line)
+            if base in goida_bases:
+                pbar.write(f"Дубликат Goida → ПРОПУЩЕНО: {base}")
+                duplicates += 1
+            else:
+                clean_configs.append(line)
 
     with open(clean_output, 'w', encoding='utf-8') as f:
         for cfg in clean_configs:
             f.write(cfg + '\n')
 
-    print(f"Удалено дубликатов Goida: {duplicates}")
+    print(f"\nДедупликация завершена. Удалено дубликатов Goida: {duplicates}")
     print(f"Осталось уникальных: {len(clean_configs)}. Сохранено в {clean_output}")
 else:
-    print("Дедупликация пропущена — используй sidr_vless.txt")
+    print("Дедупликация пропущена — используй файл sidr_vless.txt")
 
 print("\nГотово!")
