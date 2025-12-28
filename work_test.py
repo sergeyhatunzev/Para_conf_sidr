@@ -21,8 +21,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 INPUT_FILE = "sidr_vless.txt"
 OUTPUT_FILE = "sidr_vless_work.txt"
 TEST_DOMAIN = "https://www.google.com/generate_204"
-TIMEOUT = 5
-THREADS = 20
+TIMEOUT = 10
+THREADS = 200
 PROXIES_PER_BATCH = 50
 LOCAL_PORT_START = 10000
 CORE_STARTUP_TIMEOUT = 4.0
