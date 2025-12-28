@@ -566,7 +566,8 @@ CIDR_RANGES = [
 MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
 
 ADDITIONAL_URLS = [
-   "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
+    "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
+    "https://github.com/sergeyhatunzev/Para_conf_sidr/blob/main/sidr_vless_work.txt",
     "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt",
     "https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt",
     "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt",
