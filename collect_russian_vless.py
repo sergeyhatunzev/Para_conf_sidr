@@ -562,8 +562,8 @@ CIDR_RANGES = [
     ipaddress.ip_network('217.195.216.0/23'),
     ipaddress.ip_network('217.195.219.0/24'),
 ]
-
-MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
+MAIN_URL = 'https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/refs/heads/main/sidr_vless.txt'
+#MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
 
 ADDITIONAL_URLS = [
    ''' "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
