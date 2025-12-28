@@ -3,7 +3,7 @@ name: Update Russian VLESS Configs + Check
 on:
   schedule:
     - cron: '0 */3 * * *'  # Каждые 3 часа
-  workflow_dispatch:
+  workflow_dispatch:       # Ручной запуск
 
 jobs:
   collect-and-check:
@@ -17,7 +17,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Install system dependencies for Xray
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libpcre3 libpcre3-dev zlib1g zlib1g-dev openssl libssl-dev
+
+      - name: Install Python dependencies
         run: |
           pip install requests tqdm rich psutil urllib3
 
@@ -28,7 +33,7 @@ jobs:
         run: |
           # Скачиваем последнюю версию
           wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
-          # Распаковываем без вопросов (-o = overwrite without prompting)
+          # Распаковываем без вопросов
           unzip -o Xray-linux-64.zip
           # Делаем исполняемым и кладём в PATH
           chmod +x xray
