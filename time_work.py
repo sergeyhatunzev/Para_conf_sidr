@@ -6,8 +6,7 @@ WORK_URL = "https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/main
 TIME_URL = "https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/main/sidr_vless_time.txt"
 OUTPUT_TIME_FILE = "sidr_vless_time.txt"
 
-# Убрал ненужный sleep и datetime
-# time.sleep(10)  # Если нужно — раскомментируй, но обычно не требуется
+time.sleep(600)  # Если нужно — раскомментируй, но обычно не требуется
 
 def clean_url(url):
     return url.strip().replace('\ufeff', '').replace('\u200b', '').replace('\n', '').replace('\r', '')
@@ -80,3 +79,4 @@ with open(OUTPUT_TIME_FILE, 'w', encoding='utf-8') as f:
         f.write(url + '\n\n')
 
 print(f"Готово! Файл {OUTPUT_TIME_FILE} создан с сортировкой от старых к новым.")
+
