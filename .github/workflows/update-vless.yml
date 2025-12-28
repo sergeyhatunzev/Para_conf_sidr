@@ -1,13 +1,23 @@
-name: Update Russian VLESS Configs + Check
+name: Update Russian VLESS Configs + Check & Update Time
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Каждые 3 часа
+    - cron: '0 */6 * * *'  # Каждые 6 часов
   workflow_dispatch:
+  push:
+    paths:
+      - 'sidr_vless_work.txt'
+      - 'time_work.py'
+  pull_request:
+    paths:
+      - 'sidr_vless_work.txt'
 
 jobs:
-  collect-and-check:
+  process-and-update:
     runs-on: ubuntu-latest
+    outputs:
+      work_file_changed: ${{ steps.check-changes.outputs.work_changed }}
+      time_file_changed: ${{ steps.check-changes.outputs.time_changed }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,12 +27,9 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Python dependencies (including SOCKS support)
+      - name: Install dependencies
         run: |
           pip install requests[socks] tqdm rich psutil urllib3
-
-      - name: Run collection script (сбор ссылок)
-        run: python collect_russian_vless.py
 
       - name: Download and install latest Xray core
         run: |
@@ -31,13 +38,55 @@ jobs:
           chmod +x xray
           sudo mv xray /usr/local/bin/xray
 
+      - name: Run collection script (сбор ссылок)
+        run: python collect_russian_vless.py
+
       - name: Run checker script (проверка рабочих)
         run: python work_test.py
 
-      - name: Commit and push updated files
+      # Условно запускаем обновление времени только если sidr_vless_work.txt изменился
+      - name: Check if sidr_vless_work.txt changed (preliminary)
+        id: pre-check
+        run: |
+          git add sidr_vless_work.txt
+          if git diff --quiet --staged; then
+            echo "work_changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "work_changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run update time script (если были изменения в рабочих конфигах)
+        if: steps.pre-check.outputs.work_changed == 'true' || github.event_name == 'push' || github.event_name == 'pull_request'
+        run: python time_work.py
+
+      - name: Detect all changes
+        id: check-changes
+        run: |
+          git add sidr_vless.txt sidr_vless_work.txt sidr_vless_time.txt
+          if git diff --staged --quiet sidr_vless_work.txt; then
+            echo "work_changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "work_changed=true" >> $GITHUB_OUTPUT
+          fi
+          if git diff --staged --quiet sidr_vless_time.txt; then
+            echo "time_changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "time_changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push all changes (only if something changed)
+        if: steps.check-changes.outputs.work_changed == 'true' || steps.check-changes.outputs.time_changed == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sidr_vless.txt sidr_vless_work.txt 
-          git diff --staged --quiet || git commit -m "Auto update: collected + checked Russian VLESS configs"
+          
+          git add sidr_vless.txt sidr_vless_work.txt sidr_vless_time.txt
+          
+          # Формируем осмысленное сообщение
+          COMMIT_MSG="Auto update: collected + checked Russian VLESS configs"
+          if [[ "${{ steps.check-changes.outputs.time_changed }}" == "true" ]]; then
+            COMMIT_MSG="$COMMIT_MSG and updated sidr_vless_time.txt [skip ci]"
+          fi
+          
+          git commit -m "$COMMIT_MSG"
           git push
