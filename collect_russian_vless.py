@@ -706,7 +706,7 @@ with tqdm(unique_lines, desc="Обработка", unit="конфиг") as pbar:
                     continue
                 #pbar.write(f" → Уже IP: {host_or_ip}")
                 if ipv4_in_ranges(ip_obj):
-                    final_ip = hot_or_ip
+                    final_ip = host_or_ip
                     log_message = f" → {host_or_ip} (уже IP) → В диапазоне → СОХРАНЁН"
                 else:
                     #pbar.write(f" → {host_or_ip} → НЕ в диапазоне → ПРОПУЩЕНО")
