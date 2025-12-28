@@ -1,14 +1,13 @@
-name: Update Russian VLESS Configs
+name: Update Russian VLESS Configs + Check
 
 on:
   schedule:
-    - cron: '0 */3 * * *'   # Каждые 6 часов
-  workflow_dispatch:        # Ручной запуск
+    - cron: '0 */3 * * *'  # Каждые 3 часа (можно изменить)
+  workflow_dispatch:       # Ручной запуск
 
 jobs:
-  update:
+  collect-and-check:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,15 +18,26 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests tqdm
+        run: |
+          pip install requests tqdm rich psutil urllib3
 
-      - name: Run collection script
+      - name: Run collection script (сбор ссылок)
         run: python collect_russian_vless.py
 
-      - name: Commit and push if changed
+      - name: Download latest Xray core
+        run: |
+          wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
+          unzip Xray-linux-64.zip
+          chmod +x xray
+          mv xray /usr/local/bin/xray  # Чтобы скрипт нашёл по имени "xray"
+
+      - name: Run checker script (проверка рабочих)
+        run: python work_test.py
+
+      - name: Commit and push updated files
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sidr_vless.txt clean_vless.txt
-          git diff --staged --quiet || git commit -m "Auto update Russian VLESS configs"
+          git add sidr_vless.txt sidr_vless_work.txt 
+          git diff --staged --quiet || git commit -m "Auto update: collected + checked Russian VLESS configs"
           git push
