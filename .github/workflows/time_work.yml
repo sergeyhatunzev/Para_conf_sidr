@@ -29,7 +29,7 @@ jobs:
           pip install requests
 
       - name: Run update script
-        run: python update_time_txt.py
+        run: python time_work.py
 
       - name: Commit and push sidr_vless_time.txt if changed
         run: |
