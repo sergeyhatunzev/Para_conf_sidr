@@ -4,13 +4,7 @@ on:
   schedule:
     - cron: '15 */1 * * *'  # Каждые 6 часов
   workflow_dispatch:
-  push:
-    paths:
-      - 'sidr_vless_work.txt'
-      - 'time_work.py'
-  pull_request:
-    paths:
-      - 'sidr_vless_work.txt'
+  
 
 jobs:
   process-and-update:
