@@ -828,11 +828,11 @@ ADDITIONAL_URLS = [
 ]
 
 #добовляю 48 резеров
-DDITIONAL_URLS += [
+BACKUP_SOURCES += [
     f"https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/refs/heads/main/old_work/old_worked{i}.txt"
     for i in range(1, 49)
 ]
-
+ADDITIONAL_URLS += BACKUP_SOURCES  
 
 def extract_host_from_vless(vless_url):
     match = re.search(r'@([^:]+):', vless_url)
