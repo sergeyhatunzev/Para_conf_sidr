@@ -878,8 +878,42 @@ for i, url in enumerate(ADDITIONAL_URLS, 1):
         print(f"Ошибка источника {i}: {e}")
 
 print(f"\nВсего собрано vless-ссылок: {len(all_vless_lines)}")
-unique_lines = list(OrderedDict.fromkeys(all_vless_lines))
-print(f"После удаления дубликатов: {len(unique_lines)} уникальных\n")
+
+# === Умная дедупликация: один сервер = одна строка, независимо от названия и fp ===
+def get_dedup_key(vless_url):
+    """Возвращает ключ для дедупликации: всё кроме #комментария и параметра fp"""
+    # Убираем фрагмент после #
+    url_no_fragment = re.sub(r'#.*$', '', vless_url).strip()
+    
+    # Если нет параметров — возвращаем как есть
+    if '?' not in url_no_fragment:
+        return url_no_fragment
+    
+    base = url_no_fragment.split('?')[0]
+    params_str = url_no_fragment.split('?', 1)[1]
+    
+    # Разбиваем параметры, убираем fp=... и remark=...
+    params = params_str.split('&')
+    filtered = []
+    for p in params:
+        if p.startswith('fp=') or p.startswith('remark='):
+            continue
+        if p:  # пропускаем пустые
+            filtered.append(p)
+    
+    # Сортируем, чтобы порядок параметров не влиял
+    filtered.sort()
+    
+    if filtered:
+        return f"{base}?{'&'.join(filtered)}"
+    else:
+        return base
+
+print("Выполняем умную дедупликацию (один сервер — одна строка, без учёта названий и fp)...")
+unique_lines = list(OrderedDict((get_dedup_key(line), line) for line in all_vless_lines).values())
+
+print(f"После удаления дубликатов по серверу: {len(unique_lines)} уникальных\n")
+# =====================================================================
 
 # Функция обработки одной строки (возвращает модифицированный конфиг или None)
 def process_line(line):
