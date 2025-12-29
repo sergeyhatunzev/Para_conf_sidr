@@ -827,6 +827,12 @@ ADDITIONAL_URLS = [
     "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
 ]
 
+#добовляю 48 резеров
+DDITIONAL_URLS += [
+    f"https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/refs/heads/main/old_work/old_worked{i}.txt"
+    for i in range(1, 49)
+]
+
 
 def extract_host_from_vless(vless_url):
     match = re.search(r'@([^:]+):', vless_url)
