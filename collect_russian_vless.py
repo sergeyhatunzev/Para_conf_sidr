@@ -893,7 +893,7 @@ ADDITIONAL_URLS = [
 ]
 ADDITIONAL_URLS += [
     f"https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/refs/heads/main/old_work/old_worked{i}.txt"
-    for i in range(1, 49)
+    for i in range(1, 1439)
 ]
 
 def extract_host_from_vless(vless_url):
