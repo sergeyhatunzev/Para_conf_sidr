@@ -34,16 +34,16 @@ jobs:
         run: python collect_russian_vless.py
 
       # === УЛУЧШЕННЫЙ БЭКАП: 48 версий, полностью безопасный при отсутствии файлов ===
-      - name: Backup previous versions of sidr_vless_work.txt (48 versions)
+      - name: Backup previous versions of sidr_vless_work.txt (1440 versions)
         run: |
           # Создаём папку old_work, если её нет (идемпотентно)
           mkdir -p old_work
 
           # Удаляем самый старый бэкап только если он существует
-          [ -f old_work/old_worked48.txt ] && rm old_work/old_worked48.txt
+          [ -f old_work/old_worked48.txt ] && rm old_work/old_worked1440.txt
 
           # Сдвигаем файлы с 47-го по 1-й только если они есть
-          for i in $(seq 47 -1 1); do
+          for i in $(seq 1439 -1 1); do
             if [ -f old_work/old_worked${i}.txt ]; then
               mv old_work/old_worked${i}.txt old_work/old_worked$((i+1)).txt
             fi
