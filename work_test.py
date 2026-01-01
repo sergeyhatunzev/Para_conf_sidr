@@ -1,4 +1,4 @@
-мне переписала код ии я ей не доверю проверь
+
 import tempfile
 import sys
 import os
@@ -433,3 +433,4 @@ if __name__ == '__main__':
         logger.print(f"[bold red]Ошибка: {e}[/]")
         import traceback
         traceback.print_exc()
+
