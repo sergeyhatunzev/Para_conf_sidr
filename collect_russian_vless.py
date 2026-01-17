@@ -642,7 +642,8 @@ print(f"Генерация завершена: {len(allowed_ips_set):,} уник
 # URL источников
 MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
 ADDITIONAL_URLS = [
-    "https://raw.githubusercontent.com/ASTRACAT2022/VPN-FREE-astra.net-V1/refs/heads/main/website/configs/raw_configs.yaml",
+"https://s3c3.001.gpucloud.ru/dixsm/htxml"
+"https://raw.githubusercontent.com/ASTRACAT2022/VPN-FREE-astra.net-V1/refs/heads/main/website/configs/raw_configs.yaml",
 "https://etoneya.a9fm.site/",
 "https://etoneya.a9fm.site/2",
 "https://alley.serv00.net/1",
