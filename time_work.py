@@ -41,9 +41,11 @@ def parse_vless_key(url):
         address = parsed_url.hostname or ""
         port = parsed_url.port or 443
         query = urllib.parse.parse_qs(parsed_url.query)
+
         def get_p(key, default=""):
             vals = query.get(key, [default])
             return vals[0].strip()
+
         security = get_p("security", "none").lower()
         if get_p("pbk") and security != "reality":
             security = "reality"
@@ -54,8 +56,8 @@ def parse_vless_key(url):
         if type_ in ["ws", "websocket"]: type_ = "ws"
         elif type_ in ["grpc", "gun"]: type_ = "grpc"
         elif type_ in ["http", "h2", "httpupgrade"]: type_ = "http"
-        
-        # Ключ для сравнения (кортеж)
+
+        # Ключ для сравнения (host и path НЕ включаем — они игнорируются)
         return (
             address.lower(), port, uuid,
             type_, flow, security,
@@ -105,20 +107,26 @@ def plural(n, one, few, many):
     return many
 
 current_unix = int(time.time())
-configs = []
+
+# --- Собираем конфиги с дедубликацией ---
+unique_configs = {}  # key -> (add_ts, uptime_str, url)
 
 for url in current_urls:
     key = parse_vless_key(url)
-    if key and key in old_key_times and old_key_times[key] > 0:
+    if not key:
+        continue
+
+    if key in old_key_times and old_key_times[key] > 0:
         add_ts = old_key_times[key]  # самый старый для этого конфига
     else:
-        add_ts = old_exact_times.get(url, current_unix)  # fallback или новый
+        add_ts = old_exact_times.get(url, current_unix)
 
     uptime_sec = current_unix - add_ts
     days = uptime_sec // 86400
     hours = (uptime_sec % 86400) // 3600
     minutes = (uptime_sec % 3600) // 60
     seconds = uptime_sec % 60
+
     parts = []
     if days > 0:
         parts.append(f"{days} {plural(days,'день','дня','дней')}")
@@ -127,14 +135,22 @@ for url in current_urls:
     if minutes > 0 or hours > 0 or days > 0:
         parts.append(f"{minutes} {plural(minutes,'минута','минуты','минут')}")
     parts.append(f"{seconds} {plural(seconds,'секунда','секунды','секунд')}")
-    uptime_str = " ".join(parts)
-    configs.append((add_ts, uptime_str, url))
 
+    uptime_str = " ".join(parts)
+
+    # Оставляем только первый вариант для каждого уникального ключа
+    if key not in unique_configs:
+        unique_configs[key] = (add_ts, uptime_str, url)
+
+# --- Сортируем по времени ---
+configs = list(unique_configs.values())
 configs.sort(key=lambda x: x[0])  # от старых к новым
 
+# --- Записываем в файл ---
 with open(OUTPUT_TIME_FILE, 'w', encoding='utf-8') as f:
     for add_ts, uptime_str, url in configs:
         f.write(f"# работает {uptime_str} (unixtime {add_ts})\n")
         f.write(url + "\n\n")
 
-print(f"Готово! Файл {OUTPUT_TIME_FILE} обновлён с сортировкой от старых к новым (с умным переносом времени по параметрам).")
+print(f"Готово! Файл {OUTPUT_TIME_FILE} обновлён с сортировкой от старых к новым.")
+print(f"Оставлено уникальных конфигов: {len(configs)}")
