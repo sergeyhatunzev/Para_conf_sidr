@@ -57,12 +57,16 @@ def parse_vless_key(url):
         elif type_ in ["grpc", "gun"]: type_ = "grpc"
         elif type_ in ["http", "h2", "httpupgrade"]: type_ = "http"
 
-        # Ключ для сравнения (host и path НЕ включаем — они игнорируются)
+        # Ключ для сравнения — host НЕ включаем (игнорируем)
+        # path, headerType и остальные — учитываются
         return (
             address.lower(), port, uuid,
             type_, flow, security,
             sni.lower(), pbk, get_p("sid", ""),
-            get_p("fp", ""), tuple(sorted(get_p("alpn", "").split(","))) if get_p("alpn") else ()
+            get_p("fp", ""),
+            tuple(sorted(get_p("alpn", "").split(","))) if get_p("alpn") else (),
+            get_p("path", ""),          # path учитывается
+            get_p("headerType", "none") # headerType учитывается
         )
     except:
         return None
