@@ -2339,10 +2339,7 @@ ADDITIONAL_URLS = [
        
        
 ]
-ADDITIONAL_URLS += [
-    f"https://raw.githubusercontent.com/sergeyhatunzev/Para_conf_sidr/refs/heads/main/old_work/old_worked{i}.txt"
-    for i in range(1, 1439)
-]
+
 
 def extract_host_from_vless(vless_url):
     match = re.search(r'@([^:]+):', vless_url)
@@ -2389,6 +2386,29 @@ for i, url in enumerate(ADDITIONAL_URLS, 1):
             print(f"Источник {i}: {len(vless)} конфигов")
     except Exception as e:
         print(f"Ошибка источника {i}: {e}")
+
+import os
+import glob
+
+BACKUP_DIR = "old_work"
+local_files = glob.glob(os.path.join(BACKUP_DIR, "old_worked*.txt"))
+
+# Сортируем от самого свежего (old_worked1) к старому
+local_files.sort(key=lambda x: int(''.join(filter(str.isdigit, os.path.basename(x)))))
+
+print(f"\nНайдено локальных бэкап-файлов: {len(local_files)} шт.")
+print("Читаем локальные бэкапы...")
+
+for i, file_path in enumerate(local_files, 1):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            vless = [l.strip() for l in content.splitlines() if l.strip().startswith('vless://')]
+            all_vless_lines.extend(vless)
+            if len(vless) > 0:
+                print(f"Локальный бэкап {i} ({os.path.basename(file_path)}): {len(vless)} конфигов")
+    except Exception as e:
+        print(f"Ошибка чтения локального файла {i} ({os.path.basename(file_path)}): {e}")
 
 print(f"\nВсего собрано vless-ссылок: {len(all_vless_lines)}")
 
