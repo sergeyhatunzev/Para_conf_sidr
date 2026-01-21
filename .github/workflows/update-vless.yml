@@ -96,7 +96,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add -A .
+          git add **/*.txt *.txt || true    # Добавляем ТОЛЬКО все .txt файлы в корне и во всех подпапках
+
 
           COMMIT_MSG="Auto update: collected + checked Russian VLESS configs"
           if [[ "${{ steps.check-changes.outputs.time_changed }}" == "true" ]]; then
