@@ -2410,6 +2410,41 @@ for i, file_path in enumerate(local_files, 1):
     except Exception as e:
         print(f"Ошибка чтения локального файла {i} ({os.path.basename(file_path)}): {e}")
 
+# === 3. Читаем дополнительные файлы из корня репозитория (только с цифрами: vless*.txt где есть цифры) ===
+print("\nПроверяем дополнительные файлы в корне репозитория (vless с цифрами)...")
+
+# Находим файлы вида vless*.txt, где в имени есть хотя бы одна цифра
+import re
+root_vless_files = [
+    f for f in glob.glob("vless*.txt")
+    if re.search(r'\d', os.path.basename(f))  # проверяем, есть ли хотя бы одна цифра в имени файла
+]
+
+if root_vless_files:
+    print(f"Найдено файлов с цифрами в имени: {len(root_vless_files)} шт.")
+    for i, file_path in enumerate(root_vless_files, 1):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                vless = [l.strip() for l in content.splitlines() if l.strip().startswith('vless://')]
+                all_vless_lines.extend(vless)
+                if len(vless) > 0:
+                    print(f"Корневой файл {i} ({os.path.basename(file_path)}): {len(vless)} конфигов")
+        except Exception as e:
+            print(f"Ошибка чтения {os.path.basename(file_path)}: {e}")
+
+    # Удаляем все эти файлы после успешного чтения
+    print("Удаляем обработанные корневые файлы...")
+    for file_path in root_vless_files:
+        try:
+            os.remove(file_path)
+            print(f"Удалён: {os.path.basename(file_path)}")
+        except Exception as e:
+            print(f"Не удалось удалить {os.path.basename(file_path)}: {e}")
+else:
+    print("Дополнительных файлов вида vless<цифры>.txt в корне не найдено.")
+
+
 print(f"\nВсего собрано vless-ссылок: {len(all_vless_lines)}")
 
 # === Умная дедупликация: один сервер = одна строка, независимо от названия и fp ===
