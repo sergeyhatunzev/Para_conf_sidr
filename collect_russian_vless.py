@@ -2389,7 +2389,25 @@ ADDITIONAL_URLS = [
    "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR#MEGA.STR.BYPASS⚡️",
    "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/BYPASS#PROXY.STR.BYPASS🐺",
    "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/CUSTOM#CUSTOM.STR.BYPASS🤟",    
-       
+   "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt",
+   "https://etoneya.a9fm.site/whitelist",
+   "https://alley.serv00.net/whitelist",
+   "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/whitelist",
+   "https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/whitelist",
+   "https://translate.yandex.ru/translate?url=https://etoneya.a9fm.site/whitelist&lang=en-ru",
+   "https://etoneya.a9fm.site/youtube",
+   "https://alley.serv00.net/youtube",
+   "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/youtube",
+   "https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/youtube",
+   "https://translate.yandex.ru/translate?url=https://etoneya.a9fm.site/youtube&lang=en-ru",
+   "https://alley.serv00.net/other",
+   "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/other",
+   "https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/other",
+   "https://alley.serv00.net/test",
+   "https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/test",
+   "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/6.txt",
+   "https://storage.yandexcloud.net/cid-vpn/whitelist.txt",  
+   "https://gitverse.ru/api/repos/LowiK/LowiKLive/raw/branch/main/WhiteList-Bypass_Ru.txt",
 ]
 
 
