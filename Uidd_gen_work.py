@@ -2,9 +2,10 @@
 # СКРИПТ: Генератор + Тестер VLESS-конфигов
 # =============================================================================
 # 1. Читает sidr_vless.txt
-# 2. Находит уникальные UUID и рабочие серверы (по открытому TCP-порту из конфига)
-# 3. Генерирует все возможные комбинации: каждый UUID на каждый рабочий хвост
+# 2. Находит уникальные UUID и рабочие серверы (по открытому TCP-порту)
+# 3. Генерирует все возможные комбинации
 # 4. Тестирует ВСЕ сгенерированные конфиги через xray (батчами по 50)
+#    → с подробными логами ЖИВ / МЁРТВ для каждого
 # 5. Убирает дубликаты в стиле v2rayN (игнорируя host)
 # 6. Сохраняет только реально рабочие в Wow_work_uidd.txt
 # =============================================================================
@@ -39,8 +40,8 @@ LOCAL_PORT_START = 10000
 CORE_STARTUP_TIMEOUT = 4.0
 CORE_KILL_DELAY = 0.05
 
-MAX_CONCURRENT_CHECKS = 200      # ← Рекомендую 50–100, 500 обычно слишком много
-CHECK_TIMEOUT = 2.5             # секунды на проверку одного порта
+MAX_CONCURRENT_CHECKS = 80      # для проверки портов (рекомендую 50–100)
+CHECK_TIMEOUT = 2.5             # таймаут проверки одного порта
 
 # ------------------------------- RICH -------------------------------
 try:
@@ -54,11 +55,8 @@ except ImportError:
 
 logger = console
 
-# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА С РАСШИРЕННЫМИ ЛОГАМИ -------------------------------
+# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА -------------------------------
 async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout: float = CHECK_TIMEOUT) -> Tuple[bool, str]:
-    """
-    Возвращает: (успех, сообщение для лога)
-    """
     async with sem:
         match = re.search(r'@([^:]+):(\d+)(?:\?|$|#)', vless_str)
         if not match:
@@ -293,20 +291,21 @@ def kill_core(proc):
     except:
         pass
 
-# ------------------------------- ПРОВЕРКА СОЕДИНЕНИЯ -------------------------------
-def check_connection(port):
+# ------------------------------- ПРОВЕРКА СОЕДИНЕНИЯ С ЛОГАМИ -------------------------------
+def check_connection(port: int, url: str) -> Tuple[bool, int | None, str]:
     proxies = {'http': f'socks5://127.0.0.1:{port}', 'https': f'socks5://127.0.0.1:{port}'}
     try:
         start = time.time()
         r = requests.get(TEST_DOMAIN, proxies=proxies, timeout=TIMEOUT, verify=False)
         latency = round((time.time() - start) * 1000)
         if r.status_code == 204:
-            return latency, None
-        return False, f"HTTP{r.status_code}"
+            return True, latency, ""
+        else:
+            return False, None, f"HTTP {r.status_code}"
     except Exception as e:
-        return False, str(e)[:30]
+        return False, None, str(e)[:60]
 
-# ------------------------------- ДЕДУПЛИКАЦИЯ В СТИЛЕ v2rayN -------------------------------
+# ------------------------------- ДЕДУПЛИКАЦИЯ -------------------------------
 def _are_equal(a, b): return (a == b) or (not a and not b)
 def _alpn_equal(a_list, b_list): return (a_list or []) == (b_list or [])
 
@@ -351,7 +350,7 @@ def deduplicate_proxies(proxies_with_latency):
 async def main():
     logger.print("[bold cyan]=== Генератор + Тестер VLESS-конфигов ===[/]\n")
 
-    # 1. Чтение исходного файла
+    # 1. Чтение файла
     try:
         with open(INPUT_FILE, 'r', encoding='utf-8') as f:
             lines = [clean_url(l) for l in f if l.strip().startswith('vless://')]
@@ -362,7 +361,7 @@ async def main():
     total_original = len(lines)
     logger.print(f"[cyan]Найдено исходных конфигов: {total_original:,}[/]")
 
-    # 2. Собираем уникальные UUID
+    # 2. Уникальные UUID
     all_uuids = set()
     for line in lines:
         uuid = extract_uuid(line)
@@ -371,7 +370,7 @@ async def main():
     unique_uuids = list(all_uuids)
     logger.print(f"[cyan]Уникальных UUID: {len(unique_uuids):,}[/]")
 
-    # 3. Проверка открытых портов с подробными логами и прогресс-баром
+    # 3. Проверка портов с логами
     logger.print("\n[cyan]Проверка открытых портов серверов...[/]")
     logger.print(f"[dim]Всего конфигов: {total_original:,} | Макс. параллельно: {MAX_CONCURRENT_CHECKS}[/dim]\n")
 
@@ -412,7 +411,6 @@ async def main():
 
             progress.advance(task)
 
-    # Итоговая статистика
     logger.print("\n" + "═" * 70)
     logger.print(f"[bold green]ЖИВЫХ серверов: {live_count:,}[/]")
     logger.print(f"[bold red]МЁРТВЫХ / ошибок: {dead_count:,}[/]")
@@ -444,7 +442,7 @@ async def main():
         logger.print("[bold red]Не удалось сгенерировать новые конфиги.[/]")
         return
 
-    # 5. Тестирование через xray
+    # 5. Тестирование через xray с подробными логами
     TEMP_DIR = tempfile.mkdtemp()
     CORE_PATH = shutil.which("xray") or shutil.which("xray.exe")
     if not CORE_PATH:
@@ -459,21 +457,20 @@ async def main():
         return
 
     logger.print(f"[green]Ядро: {CORE_PATH}[/]")
-    logger.print(f"[cyan]Тестируем {total_generated:,} конфигов в {TEST_THREADS} потоках[/]")
+    logger.print(f"[cyan]Тестируем {total_generated:,} конфигов в {TEST_THREADS} потоках[/]\n")
 
     chunks = [new_configs[i:i + PROXIES_PER_BATCH] for i in range(0, len(new_configs), PROXIES_PER_BATCH)]
     live_results = []
 
     with Progress(
         SpinnerColumn(),
-        TextColumn("{task.description}"),
+        TextColumn("[progress.description]{task.description}"),
         BarColumn(),
-        TextColumn("{task.percentage:>3.0f}%"),
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
         TimeElapsedColumn(),
-        TimeRemainingColumn(),
         console=console
     ) as progress:
-        task = progress.add_task("[cyan]Тестирование конфигов...", total=total_generated)
+        task = progress.add_task("[cyan]Тестирование через xray...", total=total_generated)
 
         def test_batch(chunk, start_port):
             cfg_path, mapping = create_batch_config_file(chunk, start_port, TEMP_DIR)
@@ -501,12 +498,16 @@ async def main():
                     progress.advance(task)
                 return []
 
-            time.sleep(0.4)
+            time.sleep(0.4)  # даём xray время стабилизироваться
+
             batch_live = []
-            for url, port, _ in mapping:
-                lat, err = check_connection(port)
-                if lat:
-                    batch_live.append((url, lat))
+            for url, port, parsed in mapping:
+                success, latency, error = check_connection(port, url)
+                if success:
+                    logger.print(f"[green]ЖИВ[/green]  порт {port} → пинг {latency} ms   {url[:80]}...")
+                    batch_live.append((url, latency))
+                else:
+                    logger.print(f"[dim red]МЁРТВ[/dim red]  порт {port} → ошибка: {error}   {url[:80]}...")
                 progress.advance(task)
 
             kill_core(proc)
