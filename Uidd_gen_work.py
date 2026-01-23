@@ -52,15 +52,16 @@ except ImportError:
 logger = console
 
 # ------------------------------- ICMP ПИНГ (для поиска рабочих серверов) -------------------------------
-from icmplib import ping  # ← ИСПРАВЛЕНО: убрали PingError, он не нужен
+from icmplib import ping
 
-async def async_ping(host_or_ip: str, timeout: float = 2.0) -> bool:
+async def async_ping(host_or_ip: str, timeout: float = 4.0) -> bool:
     try:
         reply = await asyncio.to_thread(
-            ping, host_or_ip, count=1, timeout=timeout, privileged=True
+            ping, host_or_ip, count=1, timeout=timeout, privileged=False  # ← ИСПРАВЛЕНО: privileged=False
         )
         return reply.is_alive
-    except Exception:  # ← Ловим любое исключение — этого достаточно
+    except Exception as e:
+        # logger.print(f"[dim red]Ping error {host_or_ip}: {e}[/]")  # ← можно раскомментировать для отладки
         return False
 
 def resolve_host_to_ip(host: str) -> str | None:
