@@ -244,7 +244,7 @@ def main():
 
     with Progress(SpinnerColumn(), TextColumn("{task.description}"), BarColumn(), TimeElapsedColumn(), console=console) as progress:
         task = progress.add_task("[cyan]Проверка...", total=len(proxies))
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        with ThreadPoolExecutor(max_workers=200) as executor:
             futures = []
             port = LOCAL_PORT_START
             for chunk in chunks:
@@ -269,3 +269,4 @@ def main():
 if __name__ == '__main__':
     try: main()
     except KeyboardInterrupt: pass
+
