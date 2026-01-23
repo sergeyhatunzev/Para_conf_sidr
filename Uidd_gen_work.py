@@ -1,12 +1,12 @@
 # =============================================================================
-# СКРИПТ: Генератор + Тестер VLESS-конфигов
+# СКРИПТ: Генератор + Тестер VLESS-конфигов (улучшенная версия 2025)
 # =============================================================================
 # 1. Читает sidr_vless.txt
-# 2. Находит уникальные UUID и рабочие серверы (по открытому TCP-порту из конфига)
-# 3. Генерирует все возможные комбинации: каждый UUID на каждый рабочий хвост
-# 4. Тестирует ВСЕ сгенерированные конфиги через xray (батчами по 50)
+# 2. Находит уникальные UUID и рабочие серверы (по открытому TCP-порту)
+# 3. Генерирует все комбинации: каждый UUID × каждый рабочий хвост
+# 4. Тестирует ВСЕ конфиги через xray (батчами по 50)
 # 5. Убирает дубликаты в стиле v2rayN (игнорируя host)
-# 6. Сохраняет только реально рабочие в Wow_work_uidd.txt
+# 6. Сохраняет только рабочие в sidr_vless_work.txt
 # =============================================================================
 
 import re
@@ -24,21 +24,21 @@ import psutil
 import json
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import List, Set, Tuple
+from typing import List, Tuple
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ------------------------------- НАСТРОЙКИ -------------------------------
-INPUT_FILE = "sidr_vless.txt"
-OUTPUT_FILE = "Wow_work_uidd.txt"
-TEST_DOMAIN = "https://www.google.com/generate_204"
-TIMEOUT = 30
-TEST_THREADS = 200          # сколько потоков для теста через xray
+INPUT_FILE        = "sidr_vless.txt"
+OUTPUT_FILE       = "sidr_vless_work.txt"
+TEST_DOMAIN       = "https://www.google.com/generate_204"
+TIMEOUT           = 30
+TEST_THREADS      = 200          # сколько потоков для запуска батчей xray
 PROXIES_PER_BATCH = 50
-LOCAL_PORT_START = 10000
+LOCAL_PORT_START  = 10000
 CORE_STARTUP_TIMEOUT = 4.0
-CORE_KILL_DELAY = 0.05
-MAX_CONCURRENT_CHECKS = 500  # ← ОГРАНИЧЕНИЕ ПАРАЛЛЕЛЬНЫХ ПРОВЕРОК ПОРТОВ (можно увеличить)
+CORE_KILL_DELAY   = 0.05
+MAX_CONCURRENT_CHECKS = 500     # ограничение параллельных проверок портов
 
 # ------------------------------- RICH -------------------------------
 try:
@@ -52,42 +52,15 @@ except ImportError:
 
 logger = console
 
-# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА -------------------------------
-async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout: float = 3.0) -> bool:
-    """
-    Проверяет, открыт ли TCP-порт, указанный в строке vless
-    """
-    async with sem:
-        # Извлекаем host:port из vless://uuid@host:port?...
-        match = re.search(r'@([^:]+):(\d+)(?:\?|$|#)', vless_str)
-        if not match:
-            return False
-
-        host = match.group(1)
-        try:
-            port = int(match.group(2))
-        except ValueError:
-            return False
-
-        try:
-            reader, writer = await asyncio.wait_for(
-                asyncio.open_connection(host, port),
-                timeout=timeout
-            )
-            writer.close()
-            await writer.wait_closed()
-            return True
-        except (asyncio.TimeoutError, ConnectionRefusedError, OSError, Exception):
-            return False
-
-# ------------------------------- ПАРСЕР VLESS -------------------------------
-def clean_url(url):
+# ------------------------------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ -------------------------------
+def clean_url(url: str) -> str:
     return url.strip().replace('\ufeff', '').replace('\u200b', '').replace('\n', '').replace('\r', '')
 
 REALITY_PBK_RE = re.compile(r"^[A-Za-z0-9_-]{43,44}$")
 REALITY_SID_RE = re.compile(r"^[0-9a-fA-F]{0,32}$")
 FLOW_ALLOWED = {"", "xtls-rprx-vision", "xtls-rprx-direct", "xtls-rprx-splice"}
 
+# ------------------------------- ПАРСЕР VLESS -------------------------------
 def parse_vless(url: str):
     try:
         url = clean_url(url)
@@ -114,25 +87,31 @@ def parse_vless(url: str):
 
         encryption = get_p("encryption", "none").lower()
         net_type = get_p("type", "tcp").lower()
-        if net_type in ["ws", "websocket"]: net_type = "ws"
-        elif net_type in ["grpc", "gun"]: net_type = "grpc"
+        if net_type in ["ws", "websocket"]:     net_type = "ws"
+        elif net_type in ["grpc", "gun"]:       net_type = "grpc"
         elif net_type in ["http", "h2", "httpupgrade"]: net_type = "http"
-        else: net_type = "tcp"
+        else:                                   net_type = "tcp"
 
         flow = get_p("flow", "").lower()
-        if flow not in FLOW_ALLOWED: flow = ""
+        if flow not in FLOW_ALLOWED:
+            flow = ""
 
         security = get_p("security", "none").lower()
-        if security not in ["tls", "reality", "none"]: security = "none"
+        if security not in ["tls", "reality", "none"]:
+            security = "none"
 
         pbk = get_p("pbk", "")
         if pbk and REALITY_PBK_RE.match(pbk):
-            if security != "reality": security = "reality"
-        else: pbk = ""
+            if security != "reality":
+                security = "reality"
+        else:
+            pbk = ""
 
         sid = re.sub(r"[^a-fA-F0-9]", "", get_p("sid", ""))
-        if len(sid) > 32 or len(sid) % 2 != 0: sid = ""
-        if sid and not REALITY_SID_RE.match(sid): sid = ""
+        if len(sid) > 32 or len(sid) % 2 != 0:
+            sid = ""
+        if sid and not REALITY_SID_RE.match(sid):
+            sid = ""
 
         sni = get_p("sni", "") or address
         fp = get_p("fp", "chrome")
@@ -176,7 +155,7 @@ def extract_tail(vless: str) -> str | None:
     return None
 
 # ------------------------------- ГЕНЕРАЦИЯ OUTBOUND -------------------------------
-def make_outbound(parsed, tag):
+def make_outbound(parsed, tag: str):
     if not parsed:
         return None
     user = {"id": parsed["uuid"], "encryption": "none"}
@@ -218,16 +197,18 @@ def make_outbound(parsed, tag):
         "streamSettings": stream
     }
 
-# ------------------------------- СОЗДАНИЕ КОНФИГА ДЛЯ XRAY -------------------------------
-def create_batch_config_file(proxy_list, start_port, work_dir):
+# ------------------------------- СОЗДАНИЕ КОНФИГА БАТЧА -------------------------------
+def create_batch_config_file(proxy_list: List[str], start_port: int, work_dir: str):
     inbounds = []
     outbounds = []
     rules = []
     valid = []
+
     for i, url in enumerate(proxy_list):
         port = start_port + i
         in_tag = f"in_{port}"
         out_tag = f"out_{port}"
+
         inbounds.append({
             "port": port,
             "listen": "127.0.0.1",
@@ -235,12 +216,14 @@ def create_batch_config_file(proxy_list, start_port, work_dir):
             "tag": in_tag,
             "settings": {"udp": False}
         })
+
         parsed = parse_vless(url)
         outbound = make_outbound(parsed, out_tag)
         if outbound:
             outbounds.append(outbound)
             rules.append({"type": "field", "inboundTag": [in_tag], "outboundTag": out_tag})
             valid.append((url, port, parsed))
+
     if not valid:
         return None, None
 
@@ -250,13 +233,15 @@ def create_batch_config_file(proxy_list, start_port, work_dir):
         "outbounds": outbounds,
         "routing": {"rules": rules, "domainStrategy": "AsIs"}
     }
+
     path = os.path.join(work_dir, f"batch_{start_port}.json")
     with open(path, 'w', encoding='utf-8') as f:
         json.dump(config, f, indent=2)
+
     return path, valid
 
 # ------------------------------- ЗАПУСК / УБИЙСТВО XRAY -------------------------------
-def is_port_in_use(port):
+def is_port_in_use(port: int) -> bool:
     try:
         with socket.socket() as s:
             s.settimeout(0.1)
@@ -264,7 +249,7 @@ def is_port_in_use(port):
     except:
         return False
 
-def run_core(core_path, config_path):
+def run_core(core_path: str, config_path: str):
     cmd = [core_path, "run", "-c", config_path]
     startupinfo = subprocess.STARTUPINFO() if platform.system() == "Windows" else None
     if startupinfo:
@@ -275,7 +260,8 @@ def run_core(core_path, config_path):
         return None
 
 def kill_core(proc):
-    if not proc: return
+    if not proc:
+        return
     try:
         proc.kill()
         if psutil.pid_exists(proc.pid):
@@ -285,44 +271,74 @@ def kill_core(proc):
         pass
 
 # ------------------------------- ПРОВЕРКА СОЕДИНЕНИЯ -------------------------------
-def check_connection(port):
-    proxies = {'http': f'socks5://127.0.0.1:{port}', 'https': f'socks5://127.0.0.1:{port}'}
+def check_connection(port: int) -> Tuple[bool | int, str | None]:
+    proxies = {
+        'http':  f'socks5://127.0.0.1:{port}',
+        'https': f'socks5://127.0.0.1:{port}'
+    }
     try:
         start = time.time()
         r = requests.get(TEST_DOMAIN, proxies=proxies, timeout=TIMEOUT, verify=False)
         latency = round((time.time() - start) * 1000)
         if r.status_code == 204:
             return latency, None
-        return False, f"HTTP{r.status_code}"
+        return False, f"HTTP {r.status_code}"
     except Exception as e:
-        return False, str(e)[:30]
+        return False, str(e)[:40]
+
+# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА (асинхронно) -------------------------------
+async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout: float = 3.0) -> bool:
+    async with sem:
+        match = re.search(r'@([^:]+):(\d+)(?:\?|$|#)', vless_str)
+        if not match:
+            return False
+        host = match.group(1)
+        try:
+            port = int(match.group(2))
+        except ValueError:
+            return False
+
+        try:
+            reader, writer = await asyncio.wait_for(
+                asyncio.open_connection(host, port),
+                timeout=timeout
+            )
+            writer.close()
+            await writer.wait_closed()
+            return True
+        except:
+            return False
 
 # ------------------------------- ДЕДУПЛИКАЦИЯ В СТИЛЕ v2rayN -------------------------------
-def _are_equal(a, b): return (a == b) or (not a and not b)
-def _alpn_equal(a_list, b_list): return (a_list or []) == (b_list or [])
+def _are_equal(a, b):
+    return (a == b) or (not a and not b)
+
+def _alpn_equal(a_list, b_list):
+    return (a_list or []) == (b_list or [])
 
 def compare_parsed(a, b):
-    if not a or not b: return False
+    if not a or not b:
+        return False
     return (
-        _are_equal(a.get("protocol"), b.get("protocol")) and
-        _are_equal(a.get("address"), b.get("address")) and
-        a.get("port") == b.get("port") and
-        _are_equal(a.get("uuid"), b.get("uuid")) and
-        _are_equal(a.get("encryption"), b.get("encryption")) and
-        _are_equal(a.get("type"), b.get("type")) and
-        _are_equal(a.get("headerType"), b.get("headerType")) and
-        # _are_equal(a.get("host"), b.get("host")) # <-- ИГНОРИРУЕМ РАЗНИЦУ В HOST
-        _are_equal(a.get("path"), b.get("path")) and
-        _are_equal(a.get("security"), b.get("security")) and
-        _are_equal(a.get("flow"), b.get("flow")) and
-        _are_equal(a.get("sni"), b.get("sni")) and
-        _alpn_equal(a.get("alpn"), b.get("alpn")) and
-        _are_equal(a.get("fp"), b.get("fp")) and
-        _are_equal(a.get("pbk"), b.get("pbk")) and
-        _are_equal(a.get("sid"), b.get("sid"))
+        _are_equal(a.get("protocol"),    b.get("protocol"))    and
+        _are_equal(a.get("address"),     b.get("address"))     and
+        a.get("port") == b.get("port")                         and
+        _are_equal(a.get("uuid"),        b.get("uuid"))        and
+        _are_equal(a.get("encryption"),  b.get("encryption"))  and
+        _are_equal(a.get("type"),        b.get("type"))        and
+        _are_equal(a.get("headerType"),  b.get("headerType"))  and
+        # _are_equal(a.get("host"),      b.get("host"))        # <--- ИГНОРИРУЕМ HOST !!!
+        _are_equal(a.get("path"),        b.get("path"))        and
+        _are_equal(a.get("security"),    b.get("security"))    and
+        _are_equal(a.get("flow"),        b.get("flow"))        and
+        _are_equal(a.get("sni"),         b.get("sni"))         and
+        _alpn_equal(a.get("alpn"),       b.get("alpn"))        and
+        _are_equal(a.get("fp"),          b.get("fp"))          and
+        _are_equal(a.get("pbk"),         b.get("pbk"))         and
+        _are_equal(a.get("sid"),         b.get("sid"))
     )
 
-def deduplicate_proxies(proxies_with_latency):
+def deduplicate_proxies(proxies_with_latency: List[Tuple[str, int]]):
     keep = []
     removed = 0
     for url, latency in proxies_with_latency:
@@ -341,9 +357,9 @@ def deduplicate_proxies(proxies_with_latency):
 # ОСНОВНАЯ ЛОГИКА
 # =============================================================================
 async def main():
-    logger.print("[bold cyan]=== Генератор + Тестер VLESS-конфигов ===[/]\n")
+    logger.print("[bold cyan]=== Генератор + Тестер VLESS-конфигов (2025) ===[/]\n")
 
-    # 1. Чтение исходного файла
+    # 1. Чтение файла
     try:
         with open(INPUT_FILE, 'r', encoding='utf-8') as f:
             lines = [clean_url(l) for l in f if l.strip().startswith('vless://')]
@@ -354,7 +370,7 @@ async def main():
     total_original = len(lines)
     logger.print(f"[cyan]Найдено исходных конфигов: {total_original:,}[/]")
 
-    # 2. Собираем уникальные UUID
+    # 2. Уникальные UUID
     all_uuids = set()
     for line in lines:
         uuid = extract_uuid(line)
@@ -412,7 +428,6 @@ async def main():
             if os.path.exists(c):
                 CORE_PATH = os.path.abspath(c)
                 break
-
     if not CORE_PATH:
         logger.print("[bold red]xray не найден! Положите рядом с этим скриптом.[/]")
         shutil.rmtree(TEMP_DIR, ignore_errors=True)
@@ -422,6 +437,7 @@ async def main():
     logger.print(f"[cyan]Тестируем {total_generated:,} конфигов в {TEST_THREADS} потоках[/]")
 
     chunks = [new_configs[i:i + PROXIES_PER_BATCH] for i in range(0, len(new_configs), PROXIES_PER_BATCH)]
+
     live_results = []
 
     with Progress(
@@ -462,19 +478,29 @@ async def main():
                 return []
 
             time.sleep(0.4)
+
             batch_live = []
-            for url, port, _ in mapping:
+            for url, port, parsed in mapping:
                 lat, err = check_connection(port)
+                addr = f"{parsed['address']}:{parsed['port']}"
+                tag = parsed['tag'][:50]
+
                 if lat:
+                    logger.print(f"[green]LIVE[/] {addr:<22} | {lat:>4} ms | {tag}")
                     batch_live.append((url, lat))
+                else:
+                    logger.print(f"[red]DEAD[/] {addr:<22} | {'':>8} | {tag} → {err or 'unknown error'}")
+
                 progress.advance(task)
 
             kill_core(proc)
             time.sleep(CORE_KILL_DELAY)
+
             try:
                 os.remove(cfg_path)
             except:
                 pass
+
             return batch_live
 
         with ThreadPoolExecutor(max_workers=TEST_THREADS) as executor:
@@ -488,12 +514,12 @@ async def main():
                 live_results.extend(future.result())
 
     # 6. Дедупликация и сортировка
-    logger.print("\n[yellow]Удаление дубликатов в стиле v2rayN...[/]")
+    logger.print("\n[yellow]Удаление дубликатов в стиле v2rayN (игнорируя host)...[/]")
     live_dedup, removed = deduplicate_proxies(live_results)
     live_dedup.sort(key=lambda x: x[1])  # по пингу
 
     logger.print(f"[yellow]Удалено дубликатов: {removed}[/]")
-    logger.print(f"[bold green]Рабочих конфигов после теста: {len(live_dedup):,}[/]")
+    logger.print(f"[bold green]Рабочих конфигов после теста и дедупликации: {len(live_dedup):,}[/]")
 
     # 7. Сохранение
     if live_dedup:
@@ -502,11 +528,11 @@ async def main():
                 f.write(url + '\n')
         logger.print(f"[bold green]Рабочие конфиги сохранены в {OUTPUT_FILE}[/]")
 
-        # Показываем таблицу топ-20
+        # Таблица топ-20
         table = Table(title=f"Топ-{min(20, len(live_dedup))} лучших по пингу")
         table.add_column("Пинг", style="green", justify="right")
         table.add_column("Сервер", style="cyan")
-        table.add_column("Тег")
+        table.add_column("Тег", style="magenta")
         for url, ping in live_dedup[:20]:
             parsed = parse_vless(url)
             addr = f"{parsed['address']}:{parsed['port']}"
@@ -521,7 +547,6 @@ async def main():
         shutil.rmtree(TEMP_DIR)
     except:
         pass
-
 
 if __name__ == "__main__":
     try:
