@@ -8,7 +8,6 @@
 # 5. Убирает дубликаты в стиле v2rayN (игнорируя host)
 # 6. Сохраняет только реально рабочие в Wow_work_uidd.txt
 # =============================================================================
-
 import re
 import asyncio
 import socket
@@ -29,15 +28,16 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ------------------------------- НАСТРОЙКИ -------------------------------
-INPUT_FILE       = "sidr_vless.txt"
-OUTPUT_FILE      = "Wow_work_uidd.txt"
-TEST_DOMAIN      = "https://www.google.com/generate_204"
-TIMEOUT          = 30
-TEST_THREADS     = 200           # сколько потоков для теста
+INPUT_FILE = "sidr_vless.txt"
+OUTPUT_FILE = "Wow_work_uidd.txt"
+TEST_DOMAIN = "https://www.google.com/generate_204"
+TIMEOUT = 30
+TEST_THREADS = 200           # сколько потоков для теста через xray
 PROXIES_PER_BATCH = 50
 LOCAL_PORT_START = 10000
 CORE_STARTUP_TIMEOUT = 4.0
-CORE_KILL_DELAY  = 0.05
+CORE_KILL_DELAY = 0.05
+MAX_CONCURRENT_PINGS = 300   # ← ОГРАНИЧЕНИЕ ПАРАЛЛЕЛЬНЫХ ПИНГОВ
 
 # ------------------------------- RICH -------------------------------
 try:
@@ -48,30 +48,31 @@ try:
 except ImportError:
     print("Ошибка: pip install rich")
     sys.exit(1)
-
 logger = console
 
 # ------------------------------- ICMP ПИНГ (для поиска рабочих серверов) -------------------------------
-from icmplib import ping
+from icmplib import ping, Host
 
 async def async_ping(host_or_ip: str, timeout: float = 4.0) -> bool:
     try:
-        delay = await asyncio.to_thread(
+        host: Host = await asyncio.to_thread(
             ping,
             host_or_ip,
             count=1,
             timeout=timeout,
             privileged=False
         )
-        if delay is not None:
-            print(f"активный {host_or_ip} ({delay*1000:.1f} мс)")
+        if host.is_alive:
+            # Можно раскомментировать, если хочешь видеть задержку
+            # rtt_ms = host.avg_rtt * 1000 if host.avg_rtt is not None else 0
+            # print(f"активный {host_or_ip} ({rtt_ms:.1f} мс)")
+            # logger.print(f"[green]активный {host_or_ip}[/]")
             return True
         else:
-            print(f"пассивный {host_or_ip}")
+            # logger.print(f"[dim]пассивный {host_or_ip}[/]")
             return False
-
     except Exception as e:
-        print(f"пассивный {host_or_ip}  (ошибка: {e})")
+        # logger.print(f"[dim red]Ping error {host_or_ip}: {e}[/]")
         return False
 
 def resolve_host_to_ip(host: str) -> str | None:
@@ -84,15 +85,16 @@ def resolve_host_to_ip(host: str) -> str | None:
         except:
             return None
 
-async def check_vless_ping(vless_str: str) -> bool:
-    match = re.search(r'@([^:]+):', vless_str)
-    if not match:
-        return False
-    host = match.group(1)
-    ip = resolve_host_to_ip(host)
-    if not ip:
-        return False
-    return await async_ping(ip)
+async def check_vless_ping(vless_str: str, sem: asyncio.Semaphore) -> bool:
+    async with sem:
+        match = re.search(r'@([^:]+):', vless_str)
+        if not match:
+            return False
+        host = match.group(1)
+        ip = resolve_host_to_ip(host)
+        if not ip:
+            return False
+        return await async_ping(ip)
 
 # ------------------------------- ПАРСЕР VLESS -------------------------------
 def clean_url(url):
@@ -125,7 +127,7 @@ def parse_vless(url: str):
         encryption = get_p("encryption", "none").lower()
         net_type = get_p("type", "tcp").lower()
         if net_type in ["ws", "websocket"]: net_type = "ws"
-        elif net_type in ["grpc", "gun"]:   net_type = "grpc"
+        elif net_type in ["grpc", "gun"]: net_type = "grpc"
         elif net_type in ["http", "h2", "httpupgrade"]: net_type = "http"
         else: net_type = "tcp"
         flow = get_p("flow", "").lower()
@@ -310,7 +312,7 @@ def compare_parsed(a, b):
         _are_equal(a.get("encryption"), b.get("encryption")) and
         _are_equal(a.get("type"), b.get("type")) and
         _are_equal(a.get("headerType"), b.get("headerType")) and
-        # _are_equal(a.get("host"), b.get("host"))  # <-- ИГНОРИРУЕМ РАЗНИЦУ В HOST
+        # _are_equal(a.get("host"), b.get("host")) # <-- ИГНОРИРУЕМ РАЗНИЦУ В HOST
         _are_equal(a.get("path"), b.get("path")) and
         _are_equal(a.get("security"), b.get("security")) and
         _are_equal(a.get("flow"), b.get("flow")) and
@@ -339,7 +341,6 @@ def deduplicate_proxies(proxies_with_latency):
 # =============================================================================
 # ОСНОВНАЯ ЛОГИКА
 # =============================================================================
-
 async def main():
     logger.print("[bold cyan]=== Генератор + Тестер VLESS-конфигов ===[/]\n")
 
@@ -363,9 +364,10 @@ async def main():
     unique_uuids = list(all_uuids)
     logger.print(f"[cyan]Уникальных UUID: {len(unique_uuids):,}[/]")
 
-    # 3. Находим рабочие серверы по ICMP-пингу
+    # 3. Находим рабочие серверы по ICMP-пингу (с ограничением 300 параллельных)
     logger.print("\n[cyan]Поиск серверов, отвечающих на ping...[/]")
-    tasks = [check_vless_ping(vless) for vless in lines]
+    sem = asyncio.Semaphore(MAX_CONCURRENT_PINGS)
+    tasks = [check_vless_ping(vless, sem) for vless in lines]
     results = await asyncio.gather(*tasks, return_exceptions=True)
 
     working_original = []
@@ -420,8 +422,8 @@ async def main():
     logger.print(f"[cyan]Тестируем {total_generated:,} конфигов в {TEST_THREADS} потоках[/]")
 
     chunks = [new_configs[i:i + PROXIES_PER_BATCH] for i in range(0, len(new_configs), PROXIES_PER_BATCH)]
-
     live_results = []
+
     with Progress(
         SpinnerColumn(),
         TextColumn("{task.description}"),
@@ -483,7 +485,6 @@ async def main():
     logger.print("\n[yellow]Удаление дубликатов в стиле v2rayN...[/]")
     live_dedup, removed = deduplicate_proxies(live_results)
     live_dedup.sort(key=lambda x: x[1])  # по пингу
-
     logger.print(f"[yellow]Удалено дубликатов: {removed}[/]")
     logger.print(f"[bold green]Рабочих конфигов после теста: {len(live_dedup):,}[/]")
 
