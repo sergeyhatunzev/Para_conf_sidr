@@ -54,7 +54,7 @@ logger = console
 # ------------------------------- ICMP ПИНГ (для поиска рабочих серверов) -------------------------------
 from icmplib import ping
 
-async def async_ping(host_or_ip: str, timeout: float = 4.0) -> bool:
+async def async_ping(host_or_ip: str, timeout: float = 10.0) -> bool:
     try:
         reply = await asyncio.to_thread(
             ping, host_or_ip, count=1, timeout=timeout, privileged=False  # ← ИСПРАВЛЕНО: privileged=False
