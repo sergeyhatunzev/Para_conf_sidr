@@ -59,8 +59,10 @@ async def async_ping(host_or_ip: str, timeout: float = 10.0) -> bool:
         reply = await asyncio.to_thread(
             ping, host_or_ip, count=1, timeout=timeout, privileged=False  # ← ИСПРАВЛЕНО: privileged=False
         )
+        print(f"активный {host_or_ip} ")
         return reply.is_alive
     except Exception as e:
+        print(f"Пасивный {host_or_ip} ")
         # logger.print(f"[dim red]Ping error {host_or_ip}: {e}[/]")  # ← можно раскомментировать для отладки
         return False
 
