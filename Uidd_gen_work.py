@@ -30,7 +30,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ------------------------------- НАСТРОЙКИ -------------------------------
 INPUT_FILE       = "sidr_vless.txt"
-OUTPUT_FILE      = "Wow_work_uidd.txt"          # ← ИЗМЕНЁНО ЗДЕСЬ
+OUTPUT_FILE      = "Wow_work_uidd.txt"
 TEST_DOMAIN      = "https://www.google.com/generate_204"
 TIMEOUT          = 30
 TEST_THREADS     = 200           # сколько потоков для теста
@@ -52,7 +52,7 @@ except ImportError:
 logger = console
 
 # ------------------------------- ICMP ПИНГ (для поиска рабочих серверов) -------------------------------
-from icmplib import ping, PingError
+from icmplib import ping  # ← ИСПРАВЛЕНО: убрали PingError, он не нужен
 
 async def async_ping(host_or_ip: str, timeout: float = 2.0) -> bool:
     try:
@@ -60,7 +60,7 @@ async def async_ping(host_or_ip: str, timeout: float = 2.0) -> bool:
             ping, host_or_ip, count=1, timeout=timeout, privileged=True
         )
         return reply.is_alive
-    except:
+    except Exception:  # ← Ловим любое исключение — этого достаточно
         return False
 
 def resolve_host_to_ip(host: str) -> str | None:
@@ -152,7 +152,7 @@ def parse_vless(url: str):
             "headerType": get_p("headerType", "none"),
             "tag": tag
         }
-    except:
+    except Exception:
         return None
 
 def extract_uuid(vless: str) -> str | None:
@@ -354,7 +354,6 @@ async def main():
 
     # 3. Находим рабочие серверы по ICMP-пингу
     logger.print("\n[cyan]Поиск серверов, отвечающих на ping...[/]")
-    semaphore = asyncio.Semaphore(300)
     tasks = [check_vless_ping(vless) for vless in lines]
     results = await asyncio.gather(*tasks, return_exceptions=True)
 
