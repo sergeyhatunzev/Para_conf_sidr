@@ -1,7 +1,7 @@
 name: Generate & Test VLESS Configs (UUID Generator)
 
 on:
-  workflow_dispatch:  # Запуск вручную через кнопку "Run workflow"
+  workflow_dispatch:  # Запуск вручную
 
 jobs:
   generate-vless:
@@ -18,13 +18,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      # 3. Устанавливаем все зависимости Python
+      # 3. Устанавливаем зависимости
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install rich requests urllib3 icmplib psutil
 
-      # 4. Скачиваем последнюю версию Xray-core (Linux amd64)
+      # 4. Скачиваем Xray-core
       - name: Download Xray-core
         run: |
           LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep tag_name | cut -d '"' -f 4)
@@ -34,7 +34,7 @@ jobs:
           chmod +x xray
           ./xray --version
 
-      # 5. Проверяем наличие входного файла
+      # 5. Проверяем входной файл
       - name: Check input file exists
         run: |
           if [ ! -f "sidr_vless.txt" ]; then
@@ -44,25 +44,30 @@ jobs:
           echo "Input file found. Lines count:"
           wc -l sidr_vless.txt
 
-      # 6. Запускаем скрипт
+      # 6. Запускаем скрипт (С ВАЖНЫМИ ИСПРАВЛЕНИЯМИ)
       - name: Run UUID Generator & Tester
-        run: python Uidd_gen_work.py
+        run: |
+          # 1. Разрешаем пинг без прав root (для icmplib privileged=False)
+          sudo sysctl -w net.ipv4.ping_group_range="0 2147483647"
+          
+          # 2. Запускаем скрипт через sudo, чтобы у Xray и сокетов был полный доступ
+          # ВАЖНО: Указываем полный путь к python, чтобы он видел установленные пакеты
+          sudo $(which python) Uidd_gen_work.py
         env:
           PYTHONUNBUFFERED: "1"
 
-      # 7. Проверяем выходной файл
+      # 7. Проверяем и показываем результат
       - name: Check output file
         run: |
           if [ -f "Wow_work_uidd.txt" ]; then
             echo "Output file created successfully!"
             wc -l Wow_work_uidd.txt
-            head -n 10 Wow_work_uidd.txt || true
           else
             echo "ERROR: Wow_work_uidd.txt was not created!"
             exit 1
           fi
 
-      # 8. Загружаем результат как артефакт
+      # 8. Загружаем результат
       - name: Upload working configs as artifact
         uses: actions/upload-artifact@v4
         with:
