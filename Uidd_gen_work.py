@@ -54,16 +54,24 @@ logger = console
 # ------------------------------- ICMP ПИНГ (для поиска рабочих серверов) -------------------------------
 from icmplib import ping
 
-async def async_ping(host_or_ip: str, timeout: float = 10.0) -> bool:
+async def async_ping(host_or_ip: str, timeout: float = 4.0) -> bool:
     try:
-        reply = await asyncio.to_thread(
-            ping, host_or_ip, count=1, timeout=timeout, privileged=False  # ← ИСПРАВЛЕНО: privileged=False
+        delay = await asyncio.to_thread(
+            ping,
+            host_or_ip,
+            count=1,
+            timeout=timeout,
+            privileged=False
         )
-        print(f"активный {host_or_ip} ")
-        return reply.is_alive
+        if delay is not None:
+            print(f"активный {host_or_ip} ({delay*1000:.1f} мс)")
+            return True
+        else:
+            print(f"пассивный {host_or_ip}")
+            return False
+
     except Exception as e:
-        print(f"Пасивный {host_or_ip} ")
-        # logger.print(f"[dim red]Ping error {host_or_ip}: {e}[/]")  # ← можно раскомментировать для отладки
+        print(f"пассивный {host_or_ip}  (ошибка: {e})")
         return False
 
 def resolve_host_to_ip(host: str) -> str | None:
