@@ -2,12 +2,13 @@
 # СКРИПТ: Генератор + Тестер VLESS-конфигов
 # =============================================================================
 # 1. Читает sidr_vless.txt
-# 2. Находит уникальные UUID и рабочие серверы (по ICMP-пингу)
+# 2. Находит уникальные UUID и рабочие серверы (по открытому TCP-порту из конфига)
 # 3. Генерирует все возможные комбинации: каждый UUID на каждый рабочий хвост
 # 4. Тестирует ВСЕ сгенерированные конфиги через xray (батчами по 50)
 # 5. Убирает дубликаты в стиле v2rayN (игнорируя host)
 # 6. Сохраняет только реально рабочие в Wow_work_uidd.txt
 # =============================================================================
+
 import re
 import asyncio
 import socket
@@ -32,12 +33,12 @@ INPUT_FILE = "sidr_vless.txt"
 OUTPUT_FILE = "Wow_work_uidd.txt"
 TEST_DOMAIN = "https://www.google.com/generate_204"
 TIMEOUT = 30
-TEST_THREADS = 200           # сколько потоков для теста через xray
+TEST_THREADS = 200          # сколько потоков для теста через xray
 PROXIES_PER_BATCH = 50
 LOCAL_PORT_START = 10000
 CORE_STARTUP_TIMEOUT = 4.0
 CORE_KILL_DELAY = 0.05
-MAX_CONCURRENT_PINGS = 300   # ← ОГРАНИЧЕНИЕ ПАРАЛЛЕЛЬНЫХ ПИНГОВ
+MAX_CONCURRENT_CHECKS = 500  # ← ОГРАНИЧЕНИЕ ПАРАЛЛЕЛЬНЫХ ПРОВЕРОК ПОРТОВ (можно увеличить)
 
 # ------------------------------- RICH -------------------------------
 try:
@@ -48,53 +49,36 @@ try:
 except ImportError:
     print("Ошибка: pip install rich")
     sys.exit(1)
+
 logger = console
 
-# ------------------------------- ICMP ПИНГ (для поиска рабочих серверов) -------------------------------
-from icmplib import ping, Host
-
-async def async_ping(host_or_ip: str, timeout: float = 4.0) -> bool:
-    try:
-        host: Host = await asyncio.to_thread(
-            ping,
-            host_or_ip,
-            count=1,
-            timeout=timeout,
-            privileged=False
-        )
-        if host.is_alive:
-            # Можно раскомментировать, если хочешь видеть задержку
-            # rtt_ms = host.avg_rtt * 1000 if host.avg_rtt is not None else 0
-            # print(f"активный {host_or_ip} ({rtt_ms:.1f} мс)")
-            # logger.print(f"[green]активный {host_or_ip}[/]")
-            return True
-        else:
-            # logger.print(f"[dim]пассивный {host_or_ip}[/]")
-            return False
-    except Exception as e:
-        # logger.print(f"[dim red]Ping error {host_or_ip}: {e}[/]")
-        return False
-
-def resolve_host_to_ip(host: str) -> str | None:
-    try:
-        socket.inet_aton(host)
-        return host
-    except:
-        try:
-            return socket.gethostbyname(host)
-        except:
-            return None
-
-async def check_vless_ping(vless_str: str, sem: asyncio.Semaphore) -> bool:
+# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА -------------------------------
+async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout: float = 3.0) -> bool:
+    """
+    Проверяет, открыт ли TCP-порт, указанный в строке vless
+    """
     async with sem:
-        match = re.search(r'@([^:]+):', vless_str)
+        # Извлекаем host:port из vless://uuid@host:port?...
+        match = re.search(r'@([^:]+):(\d+)(?:\?|$|#)', vless_str)
         if not match:
             return False
+
         host = match.group(1)
-        ip = resolve_host_to_ip(host)
-        if not ip:
+        try:
+            port = int(match.group(2))
+        except ValueError:
             return False
-        return await async_ping(ip)
+
+        try:
+            reader, writer = await asyncio.wait_for(
+                asyncio.open_connection(host, port),
+                timeout=timeout
+            )
+            writer.close()
+            await writer.wait_closed()
+            return True
+        except (asyncio.TimeoutError, ConnectionRefusedError, OSError, Exception):
+            return False
 
 # ------------------------------- ПАРСЕР VLESS -------------------------------
 def clean_url(url):
@@ -115,36 +99,46 @@ def parse_vless(url: str):
         else:
             main_part = url
             tag = "vless"
+
         parsed_url = urllib.parse.urlparse(main_part)
         uuid = urllib.parse.unquote(parsed_url.username or "")
         address = parsed_url.hostname or ""
         port = parsed_url.port or 443
         if not uuid or not address:
             return None
+
         query_params = urllib.parse.parse_qs(parsed_url.query)
+
         def get_p(key, default=""):
             return query_params.get(key, [default])[0].strip()
+
         encryption = get_p("encryption", "none").lower()
         net_type = get_p("type", "tcp").lower()
         if net_type in ["ws", "websocket"]: net_type = "ws"
         elif net_type in ["grpc", "gun"]: net_type = "grpc"
         elif net_type in ["http", "h2", "httpupgrade"]: net_type = "http"
         else: net_type = "tcp"
+
         flow = get_p("flow", "").lower()
         if flow not in FLOW_ALLOWED: flow = ""
+
         security = get_p("security", "none").lower()
         if security not in ["tls", "reality", "none"]: security = "none"
+
         pbk = get_p("pbk", "")
         if pbk and REALITY_PBK_RE.match(pbk):
             if security != "reality": security = "reality"
         else: pbk = ""
+
         sid = re.sub(r"[^a-fA-F0-9]", "", get_p("sid", ""))
         if len(sid) > 32 or len(sid) % 2 != 0: sid = ""
         if sid and not REALITY_SID_RE.match(sid): sid = ""
+
         sni = get_p("sni", "") or address
         fp = get_p("fp", "chrome")
         alpn_str = get_p("alpn", "")
         alpn = [x.strip() for x in alpn_str.split(",")] if alpn_str else []
+
         return {
             "protocol": "vless",
             "uuid": uuid.lower(),
@@ -190,9 +184,11 @@ def make_outbound(parsed, tag):
         user["flow"] = parsed["flow"]
     vnext = [{"address": parsed["address"], "port": parsed["port"], "users": [user]}]
     stream = {"network": parsed["type"], "security": parsed["security"]}
+
     tls_settings = {"serverName": parsed["sni"], "allowInsecure": True}
     if parsed["alpn"]:
         tls_settings["alpn"] = parsed["alpn"]
+
     if parsed["security"] == "tls":
         stream["tlsSettings"] = tls_settings
     elif parsed["security"] == "reality":
@@ -203,6 +199,7 @@ def make_outbound(parsed, tag):
             "fingerprint": parsed["fp"],
             "spiderX": "/"
         }
+
     if parsed["type"] == "ws":
         host = parsed["host"] or parsed["sni"]
         stream["wsSettings"] = {"path": parsed["path"] or "/", "headers": {"Host": host} if host else {}}
@@ -213,6 +210,7 @@ def make_outbound(parsed, tag):
         stream["httpSettings"] = {"path": parsed["path"] or "/", "host": [host] if host else []}
     elif parsed["type"] == "tcp" and parsed["headerType"] != "none":
         stream["tcpSettings"] = {"header": {"type": parsed["headerType"]}}
+
     return {
         "protocol": "vless",
         "tag": tag,
@@ -245,6 +243,7 @@ def create_batch_config_file(proxy_list, start_port, work_dir):
             valid.append((url, port, parsed))
     if not valid:
         return None, None
+
     config = {
         "log": {"loglevel": "none"},
         "inbounds": inbounds,
@@ -364,24 +363,24 @@ async def main():
     unique_uuids = list(all_uuids)
     logger.print(f"[cyan]Уникальных UUID: {len(unique_uuids):,}[/]")
 
-    # 3. Находим рабочие серверы по ICMP-пингу (с ограничением 300 параллельных)
-    logger.print("\n[cyan]Поиск серверов, отвечающих на ping...[/]")
-    sem = asyncio.Semaphore(MAX_CONCURRENT_PINGS)
-    tasks = [check_vless_ping(vless, sem) for vless in lines]
+    # 3. Проверка открытых портов
+    logger.print("\n[cyan]Проверка открытых портов серверов...[/]")
+    sem = asyncio.Semaphore(MAX_CONCURRENT_CHECKS)
+    tasks = [check_vless_port_open(vless, sem, timeout=3.0) for vless in lines]
     results = await asyncio.gather(*tasks, return_exceptions=True)
 
     working_original = []
     for i, res in enumerate(results):
         if isinstance(res, Exception):
             continue
-        if res:
+        if res is True:
             working_original.append(lines[i])
 
     working_count = len(working_original)
-    logger.print(f"[green]Рабочих серверов по ping: {working_count:,} из {total_original:,}[/]")
+    logger.print(f"[green]Серверов с открытым портом: {working_count:,} из {total_original:,}[/]")
 
     if not working_original:
-        logger.print("[bold red]Не найдено ни одного рабочего сервера по ping. Выход.[/]")
+        logger.print("[bold red]Не найдено ни одного сервера с открытым портом. Выход.[/]")
         return
 
     # 4. Генерация новых конфигов
@@ -413,6 +412,7 @@ async def main():
             if os.path.exists(c):
                 CORE_PATH = os.path.abspath(c)
                 break
+
     if not CORE_PATH:
         logger.print("[bold red]xray не найден! Положите рядом с этим скриптом.[/]")
         shutil.rmtree(TEMP_DIR, ignore_errors=True)
@@ -441,22 +441,26 @@ async def main():
                 for _ in chunk:
                     progress.advance(task)
                 return []
+
             proc = run_core(CORE_PATH, cfg_path)
             if not proc:
                 for _ in chunk:
                     progress.advance(task)
                 return []
+
             started = False
             for _ in range(int(CORE_STARTUP_TIMEOUT * 20)):
                 if is_port_in_use(mapping[0][1]):
                     started = True
                     break
                 time.sleep(0.05)
+
             if not started:
                 kill_core(proc)
                 for _ in chunk:
                     progress.advance(task)
                 return []
+
             time.sleep(0.4)
             batch_live = []
             for url, port, _ in mapping:
@@ -464,6 +468,7 @@ async def main():
                 if lat:
                     batch_live.append((url, lat))
                 progress.advance(task)
+
             kill_core(proc)
             time.sleep(CORE_KILL_DELAY)
             try:
@@ -478,6 +483,7 @@ async def main():
             for chunk in chunks:
                 futures.append(executor.submit(test_batch, chunk, port_offset))
                 port_offset += len(chunk) + 20
+
             for future in as_completed(futures):
                 live_results.extend(future.result())
 
@@ -485,6 +491,7 @@ async def main():
     logger.print("\n[yellow]Удаление дубликатов в стиле v2rayN...[/]")
     live_dedup, removed = deduplicate_proxies(live_results)
     live_dedup.sort(key=lambda x: x[1])  # по пингу
+
     logger.print(f"[yellow]Удалено дубликатов: {removed}[/]")
     logger.print(f"[bold green]Рабочих конфигов после теста: {len(live_dedup):,}[/]")
 
@@ -514,6 +521,7 @@ async def main():
         shutil.rmtree(TEMP_DIR)
     except:
         pass
+
 
 if __name__ == "__main__":
     try:
