@@ -24,7 +24,7 @@ import psutil
 import json
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import List, Set, Tuple
+from typing import List, Tuple
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -33,18 +33,20 @@ INPUT_FILE = "sidr_vless.txt"
 OUTPUT_FILE = "Wow_work_uidd.txt"
 TEST_DOMAIN = "https://www.google.com/generate_204"
 TIMEOUT = 30
-TEST_THREADS = 200          # сколько потоков для теста через xray
+TEST_THREADS = 200
 PROXIES_PER_BATCH = 50
 LOCAL_PORT_START = 10000
 CORE_STARTUP_TIMEOUT = 4.0
 CORE_KILL_DELAY = 0.05
-MAX_CONCURRENT_CHECKS = 500  # ← ОГРАНИЧЕНИЕ ПАРАЛЛЕЛЬНЫХ ПРОВЕРОК ПОРТОВ (можно увеличить)
+
+MAX_CONCURRENT_CHECKS = 200      # ← Рекомендую 50–100, 500 обычно слишком много
+CHECK_TIMEOUT = 2.5             # секунды на проверку одного порта
 
 # ------------------------------- RICH -------------------------------
 try:
     from rich.console import Console
     from rich.table import Table
-    from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeElapsedColumn, TimeRemainingColumn
+    from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeElapsedColumn
     console = Console()
 except ImportError:
     print("Ошибка: pip install rich")
@@ -52,22 +54,23 @@ except ImportError:
 
 logger = console
 
-# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА -------------------------------
-async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout: float = 3.0) -> bool:
+# ------------------------------- ПРОВЕРКА ОТКРЫТОГО ПОРТА С РАСШИРЕННЫМИ ЛОГАМИ -------------------------------
+async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout: float = CHECK_TIMEOUT) -> Tuple[bool, str]:
     """
-    Проверяет, открыт ли TCP-порт, указанный в строке vless
+    Возвращает: (успех, сообщение для лога)
     """
     async with sem:
-        # Извлекаем host:port из vless://uuid@host:port?...
         match = re.search(r'@([^:]+):(\d+)(?:\?|$|#)', vless_str)
         if not match:
-            return False
+            return False, "[yellow]НЕВАЛИДНЫЙ ФОРМАТ[/yellow]"
 
         host = match.group(1)
         try:
             port = int(match.group(2))
         except ValueError:
-            return False
+            return False, "[yellow]НЕВЕРНЫЙ ПОРТ[/yellow]"
+
+        addr = f"{host}:{port}"
 
         try:
             reader, writer = await asyncio.wait_for(
@@ -76,9 +79,15 @@ async def check_vless_port_open(vless_str: str, sem: asyncio.Semaphore, timeout:
             )
             writer.close()
             await writer.wait_closed()
-            return True
-        except (asyncio.TimeoutError, ConnectionRefusedError, OSError, Exception):
-            return False
+            return True, f"[green]ЖИВ[/green]  {addr}"
+        except asyncio.TimeoutError:
+            return False, f"[dim red]МЁРТВ (таймаут)[/dim red]  {addr}"
+        except ConnectionRefusedError:
+            return False, f"[dim red]МЁРТВ (отказ в соединении)[/dim red]  {addr}"
+        except OSError as e:
+            return False, f"[dim red]МЁРТВ (ошибка ОС: {str(e)[:50]})[/dim red]  {addr}"
+        except Exception as e:
+            return False, f"[dim red]МЁРТВ (ошибка: {str(e)[:50]})[/dim red]  {addr}"
 
 # ------------------------------- ПАРСЕР VLESS -------------------------------
 def clean_url(url):
@@ -311,7 +320,6 @@ def compare_parsed(a, b):
         _are_equal(a.get("encryption"), b.get("encryption")) and
         _are_equal(a.get("type"), b.get("type")) and
         _are_equal(a.get("headerType"), b.get("headerType")) and
-        # _are_equal(a.get("host"), b.get("host")) # <-- ИГНОРИРУЕМ РАЗНИЦУ В HOST
         _are_equal(a.get("path"), b.get("path")) and
         _are_equal(a.get("security"), b.get("security")) and
         _are_equal(a.get("flow"), b.get("flow")) and
@@ -363,28 +371,60 @@ async def main():
     unique_uuids = list(all_uuids)
     logger.print(f"[cyan]Уникальных UUID: {len(unique_uuids):,}[/]")
 
-    # 3. Проверка открытых портов
+    # 3. Проверка открытых портов с подробными логами и прогресс-баром
     logger.print("\n[cyan]Проверка открытых портов серверов...[/]")
+    logger.print(f"[dim]Всего конфигов: {total_original:,} | Макс. параллельно: {MAX_CONCURRENT_CHECKS}[/dim]\n")
+
     sem = asyncio.Semaphore(MAX_CONCURRENT_CHECKS)
-    tasks = [check_vless_port_open(vless, sem, timeout=3.0) for vless in lines]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
 
-    working_original = []
-    for i, res in enumerate(results):
-        if isinstance(res, Exception):
-            continue
-        if res is True:
-            working_original.append(lines[i])
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+        TimeElapsedColumn(),
+        console=console
+    ) as progress:
+        task = progress.add_task("[cyan]Проверка портов...", total=total_original)
 
-    working_count = len(working_original)
-    logger.print(f"[green]Серверов с открытым портом: {working_count:,} из {total_original:,}[/]")
+        tasks = [check_vless_port_open(vless, sem, timeout=CHECK_TIMEOUT) for vless in lines]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        working_original = []
+        live_count = 0
+        dead_count = 0
+
+        for i, result in enumerate(results):
+            if isinstance(result, Exception):
+                logger.print(f"[bold red]КРИТИЧЕСКАЯ ОШИБКА[/bold red]  {lines[i][:80]}...")
+                dead_count += 1
+                progress.advance(task)
+                continue
+
+            is_alive, message = result
+            logger.print(message)
+
+            if is_alive:
+                working_original.append(lines[i])
+                live_count += 1
+            else:
+                dead_count += 1
+
+            progress.advance(task)
+
+    # Итоговая статистика
+    logger.print("\n" + "═" * 70)
+    logger.print(f"[bold green]ЖИВЫХ серверов: {live_count:,}[/]")
+    logger.print(f"[bold red]МЁРТВЫХ / ошибок: {dead_count:,}[/]")
+    logger.print(f"[bold cyan]Всего проверено: {total_original:,}[/]")
+    logger.print("═" * 70 + "\n")
 
     if not working_original:
         logger.print("[bold red]Не найдено ни одного сервера с открытым портом. Выход.[/]")
         return
 
     # 4. Генерация новых конфигов
-    logger.print("\n[cyan]Генерация новых конфигов...[/]")
+    logger.print("[cyan]Генерация новых конфигов...[/cyan]")
     new_configs = []
     for original in working_original:
         tail = extract_tail(original)
@@ -488,9 +528,9 @@ async def main():
                 live_results.extend(future.result())
 
     # 6. Дедупликация и сортировка
-    logger.print("\n[yellow]Удаление дубликатов в стиле v2rayN...[/]")
+    logger.print("\n[yellow]Удаление дубликатов в стиле v2rayN...[/yellow]")
     live_dedup, removed = deduplicate_proxies(live_results)
-    live_dedup.sort(key=lambda x: x[1])  # по пингу
+    live_dedup.sort(key=lambda x: x[1])
 
     logger.print(f"[yellow]Удалено дубликатов: {removed}[/]")
     logger.print(f"[bold green]Рабочих конфигов после теста: {len(live_dedup):,}[/]")
@@ -502,7 +542,6 @@ async def main():
                 f.write(url + '\n')
         logger.print(f"[bold green]Рабочие конфиги сохранены в {OUTPUT_FILE}[/]")
 
-        # Показываем таблицу топ-20
         table = Table(title=f"Топ-{min(20, len(live_dedup))} лучших по пингу")
         table.add_column("Пинг", style="green", justify="right")
         table.add_column("Сервер", style="cyan")
