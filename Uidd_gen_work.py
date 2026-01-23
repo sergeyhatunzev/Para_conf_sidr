@@ -30,7 +30,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ------------------------------- НАСТРОЙКИ -------------------------------
 INPUT_FILE        = "sidr_vless.txt"
-OUTPUT_FILE       = "sidr_vless_work.txt"
+OUTPUT_FILE       = "Wow_work_uidd.txt"
 TEST_DOMAIN       = "https://www.google.com/generate_204"
 TIMEOUT           = 30
 TEST_THREADS      = 200          # сколько потоков для запуска батчей xray
