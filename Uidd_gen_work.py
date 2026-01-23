@@ -489,8 +489,8 @@ async def main():
                     logger.print(f"[green]LIVE[/] {addr:<22} | {lat:>4} ms | {tag}")
                     batch_live.append((url, lat))
                 else:
-                    logger.print(f"[red]DEAD[/] {addr:<22} | {'':>8} | {tag} → {err or 'unknown error'}")
-
+                    #logger.print(f"[red]DEAD[/] {addr:<22} | {'':>8} | {tag} → {err or 'unknown error'}")
+                    pass
                 progress.advance(task)
 
             kill_core(proc)
