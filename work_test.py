@@ -25,9 +25,9 @@ LOCAL_PORT_START = 1025
 LOCAL_PORT_END = 65000   
 CORE_STARTUP_TIMEOUT = 5.0
 
-# Лимиты на выполнение (в секундах)
-BATCH_EXEC_TIMEOUT = 900    # Макс. время на всю пачку (8 минут)
-SINGLE_EXEC_TIMEOUT = 60    # Макс. время на один конфиг в одиночном режиме
+# Жесткие лимиты
+BATCH_MAX_RUNTIME = 600   # 10 минут на пачку максимум
+SINGLE_MAX_RUNTIME = 45   # 45 секунд на один прокси в одиночном режиме
 
 chek_vivod = 0
 processed_count = 0
@@ -87,10 +87,9 @@ def make_outbound(p, tag):
     return {"protocol": "vless", "tag": tag, "settings": {"vnext": [{"address": p["address"], "port": p["port"], "users": [user]}]}, "streamSettings": stream}
 
 def is_port_in_use(port):
-    if not (1024 <= port <= 65535): return False
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.settimeout(0.1)
+            s.settimeout(0.2)
             return s.connect_ex(('127.0.0.1', port)) == 0
     except: return False
 
@@ -98,7 +97,7 @@ def kill_core(proc):
     if proc:
         try:
             proc.terminate()
-            proc.wait(timeout=2)
+            proc.wait(timeout=3)
         except:
             try: proc.kill()
             except: pass
@@ -118,7 +117,7 @@ def print_progress(addr, ms, is_single=False):
 def check_batch(chunk, start_port, core_path, temp_dir):
     global processed_count
     batch_live = []
-    start_batch_time = time.time()
+    start_time_batch = time.time()
     
     inbounds, outbounds, rules, mapping = [], [], [], []
     for i, url in enumerate(chunk):
@@ -139,9 +138,10 @@ def check_batch(chunk, start_port, core_path, temp_dir):
         with open(cfg_path, 'w') as f: 
             json.dump({"log": {"loglevel": "none"}, "inbounds": inbounds, "outbounds": outbounds, "routing": {"rules": rules}}, f)
 
-        proc = subprocess.Popen([core_path, "run", "-c", cfg_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # Запускаем в новой сессии, чтобы легче было убить дерево процессов
+        proc = subprocess.Popen([core_path, "run", "-c", cfg_path], 
+                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
-        # Ожидание старта
         started = False
         for _ in range(int(CORE_STARTUP_TIMEOUT * 10)):
             if is_port_in_use(mapping[0][1]): 
@@ -151,42 +151,46 @@ def check_batch(chunk, start_port, core_path, temp_dir):
 
         if started:
             for url, port, p in mapping:
-                # ЗАЩИТА: Если пачка работает дольше лимита, дропаем её
-                if time.time() - start_batch_time > BATCH_EXEC_TIMEOUT:
-                    break
+                # Если батч работает слишком долго - прерываем
+                if time.time() - start_time_batch > BATCH_MAX_RUNTIME: break
                 
                 processed_count += 1
                 try:
                     st = time.time()
-                    r = requests.get(TEST_DOMAIN, proxies={'http': f'socks5://127.0.0.1:{port}', 'https': f'socks5://127.0.0.1:{port}'}, timeout=TIMEOUT, verify=False)
+                    r = requests.get(TEST_DOMAIN, proxies={'http': f'socks5://127.0.0.1:{port}', 'https': f'socks5://127.0.0.1:{port}'}, 
+                                     timeout=TIMEOUT, verify=False)
                     if r.status_code == 204:
                         ms = round((time.time() - st) * 1000)
                         batch_live.append((url, ms))
                         print_progress(p['address'], ms)
                 except: pass
         else:
-            # Если батч не запустился, переходим к одиночным
+            # Одиночный режим с контролем времени
             kill_core(proc)
             proc = None
             for url, port, p in mapping:
+                if time.time() - start_time_batch > BATCH_MAX_RUNTIME: break
                 processed_count += 1
+                
                 s_cfg = os.path.join(temp_dir, f"s_{port}.json")
                 sproc = None
                 try:
                     with open(s_cfg, 'w') as f:
                         json.dump({"log": {"loglevel": "none"}, "inbounds": [{"port": port, "protocol": "socks"}], "outbounds": [make_outbound(p, "out")]}, f)
                     
-                    sproc = subprocess.Popen([core_path, "run", "-c", s_cfg], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    sproc = subprocess.Popen([core_path, "run", "-c", s_cfg], 
+                                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                     
-                    # Жесткий лимит на старт и проверку одиночного прокси
-                    st_single = time.time()
-                    while time.time() - st_single < 2.0: # ждем старт порта до 2 сек
+                    # Ждем старта порта макс 3 секунды
+                    s_start = time.time()
+                    while time.time() - s_start < 3.0:
                         if is_port_in_use(port): break
-                        time.sleep(0.2)
+                        time.sleep(0.3)
                     
                     try:
                         st = time.time()
-                        r = requests.get(TEST_DOMAIN, proxies={'http': f'socks5://127.0.0.1:{port}', 'https': f'socks5://127.0.0.1:{port}'}, timeout=TIMEOUT, verify=False)
+                        r = requests.get(TEST_DOMAIN, proxies={'http': f'socks5://127.0.0.1:{port}', 'https': f'socks5://127.0.0.1:{port}'}, 
+                                         timeout=TIMEOUT, verify=False)
                         if r.status_code == 204:
                             ms = round((time.time() - st) * 1000)
                             batch_live.append((url, ms))
@@ -245,7 +249,7 @@ def main():
         for url, _ in unique_live: 
             f.write(url + '\n')
 
-    print(f"Готово! Найдено рабочих: {len(all_live)}. Дублей убрано: {len(all_live) - len(unique_live)}")
+    print(f"Готово! Найдено рабочих: {len(all_live)}. После удаления дублей осталось: {len(unique_live)}")
     
     try: shutil.rmtree(temp_dir)
     except: pass
