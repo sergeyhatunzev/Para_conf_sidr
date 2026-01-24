@@ -210,8 +210,7 @@ def main():
     # --- ШАГ 2: ДЕДУБЛИКАЦИЯ ---
     print(f"\n--- ШАГ 2: ДЕДУБЛИКАЦИЯ (Анализ {len(all_live)} рабочих) ---")
     
-    # Сортируем по скорости, чтобы дубликаты с плохим пингом удалились первыми
-    all_live.sort(key=lambda x: x[1])
+
     
     unique_live = []
     for url, ms in all_live:
@@ -229,7 +228,7 @@ def main():
             f.write(url + '\n')
 
     print(f"Готово! Найдено рабочих: {len(all_live)}. После удаления дублей осталось: {len(unique_live)}")
-    shutil.rmtree(temp_dir, ignore_errors=True)
+    
 
 if __name__ == '__main__':
     main()
