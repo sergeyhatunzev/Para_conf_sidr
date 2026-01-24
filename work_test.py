@@ -102,7 +102,7 @@ def kill_core(proc):
 def print_progress(addr, ms, is_single=False):
     global processed_count, total_proxies_count, chek_vivod
     pct = (processed_count / total_proxies_count) * 100 if total_proxies_count > 0 else 0
-    if chek_vivod = 50:
+    if chek_vivod == 50:
         mode = "(S)" if is_single else ""
         sys.stdout.write(f"\r[{pct:3.0f}%] LIVE {mode} {addr:<25} | {ms:>4}ms\n")
         sys.stdout.flush()
@@ -233,5 +233,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
