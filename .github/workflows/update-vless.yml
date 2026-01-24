@@ -53,7 +53,6 @@ jobs:
         run: |
           ulimit -n 65535        # ФИКС: Увеличиваем лимиты сокетов для THREADS=200
           python work_test.py
-        timeout-minutes: 40      # ФИКС: Если скрипт зависнет, GitHub прибьет его сам через 40 мин
 
       - name: Check if sidr_vless_work.txt changed (preliminary)
         id: pre-check
