@@ -19,9 +19,9 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 INPUT_FILE = "sidr_vless.txt"
 OUTPUT_FILE = "sidr_vless_work.txt"
 TEST_DOMAIN = "https://www.google.com/generate_204"
-TIMEOUT_HTTP = 40  
-CORE_STARTUP_TIMEOUT = 10.0  
-THREADS = 100
+TIMEOUT_HTTP = 20  
+CORE_STARTUP_TIMEOUT = 5.0  
+THREADS = 200
 processed_count = 0
 total_proxies_count = 0
 
@@ -221,4 +221,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
