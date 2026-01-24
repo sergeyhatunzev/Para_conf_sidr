@@ -24,7 +24,7 @@ PROXIES_PER_BATCH = 80
 LOCAL_PORT_START = 1025   
 LOCAL_PORT_END = 65000   
 CORE_STARTUP_TIMEOUT = 5.0
-
+chek_vivod = 0
 processed_count = 0
 total_proxies_count = 0
 
@@ -100,11 +100,15 @@ def kill_core(proc):
             except: pass
 
 def print_progress(addr, ms, is_single=False):
-    global processed_count, total_proxies_count
+    global processed_count, total_proxies_count chek_vivod
     pct = (processed_count / total_proxies_count) * 100 if total_proxies_count > 0 else 0
-    mode = "(S)" if is_single else ""
-    sys.stdout.write(f"\r[{pct:3.0f}%] LIVE {mode} {addr:<25} | {ms:>4}ms\n")
-    sys.stdout.flush()
+    if chek_vivod = 50:
+        mode = "(S)" if is_single else ""
+        sys.stdout.write(f"\r[{pct:3.0f}%] LIVE {mode} {addr:<25} | {ms:>4}ms\n")
+        sys.stdout.flush()
+        chek_vivod = 0
+    else:
+        chek_vivod = chek_vivod + 1
 
 # ------------------------------- ЧЕКЕР (БЕЗ ИЗМЕНЕНИЙ) -------------------------------
 def check_batch(chunk, start_port, core_path, temp_dir):
