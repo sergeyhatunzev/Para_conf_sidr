@@ -21,7 +21,7 @@ TEST_DOMAIN = "https://www.google.com/generate_204"
 TIMEOUT = 12
 THREADS = 200            
 PROXIES_PER_BATCH = 80   
-LOCAL_PORT_START = 1025   # Твое предложение: начинаем с самого начала свободных портов
+LOCAL_PORT_START = 1025   
 LOCAL_PORT_END = 65000   
 CORE_STARTUP_TIMEOUT = 5.0
 
@@ -58,6 +58,15 @@ def parse_vless(url):
             "headerType": get_p("headerType") or "none"
         }
     except: return None
+
+# Функция сравнения (из старого скрипта, без изменений)
+def is_same_config(url1, url2):
+    p1, p2 = parse_vless(url1), parse_vless(url2)
+    if not p1 or not p2: return False
+    return (p1["address"] == p2["address"] and p1["port"] == p2["port"] and 
+            p1["uuid"] == p2["uuid"] and p1["sni"] == p2["sni"] and 
+            p1["type"] == p2["type"] and p1["path"] == p2["path"] and 
+            p1["pbk"] == p2["pbk"])
 
 def make_outbound(p, tag):
     if not p: return None
@@ -97,7 +106,7 @@ def print_progress(addr, ms, is_single=False):
     sys.stdout.write(f"\r[{pct:3.0f}%] LIVE {mode} {addr:<25} | {ms:>4}ms\n")
     sys.stdout.flush()
 
-# ------------------------------- ЧЕКЕР -------------------------------
+# ------------------------------- ЧЕКЕР (БЕЗ ИЗМЕНЕНИЙ) -------------------------------
 def check_batch(chunk, start_port, core_path, temp_dir):
     global processed_count
     inbounds, outbounds, rules, mapping = [], [], [], []
@@ -120,7 +129,7 @@ def check_batch(chunk, start_port, core_path, temp_dir):
     
     started = False
     for _ in range(int(CORE_STARTUP_TIMEOUT * 10)):
-        if is_port_in_use(mapping[0][1]): started = True; break
+        if mapping and is_port_in_use(mapping[0][1]): started = True; break
         time.sleep(0.1)
 
     if started:
@@ -160,7 +169,7 @@ def check_batch(chunk, start_port, core_path, temp_dir):
     except: pass
     return batch_live
 
-# ------------------------------- MAIN -------------------------------
+# ------------------------------- MAIN (РАЗДЕЛЕН НА 2 ЧАСТИ) -------------------------------
 def main():
     global total_proxies_count
     core = shutil.which("xray") or "./xray"
@@ -170,13 +179,14 @@ def main():
         proxies = [clean_url(l) for l in f if l.strip().startswith("vless://")]
 
     total_proxies_count = len(proxies)
-    print(f"Старт: {total_proxies_count} прокси | Потоки: {THREADS}")
+    
+    # --- ЧАСТЬ 1: ТЕСТИРОВАНИЕ ---
+    print(f"--- ШАГ 1: ТЕСТИРОВАНИЕ ({total_proxies_count} прокси) ---")
     
     temp_dir = tempfile.mkdtemp()
     chunks = [proxies[i:i + PROXIES_PER_BATCH] for i in range(0, len(proxies), PROXIES_PER_BATCH)]
     all_live = []
 
-    # Увеличили окно портов до максимума
     PORT_STEP = PROXIES_PER_BATCH + 20
     PORT_RANGE = LOCAL_PORT_END - LOCAL_PORT_START
 
@@ -193,11 +203,28 @@ def main():
                 if res: all_live.extend(res)
             except: continue
 
+    # --- ШАГ 2: ДЕДУБЛИКАЦИЯ ---
+    print(f"\n--- ШАГ 2: ДЕДУБЛИКАЦИЯ (Анализ {len(all_live)} рабочих) ---")
+    
+    # Сортируем по скорости, чтобы дубликаты с плохим пингом удалились первыми
     all_live.sort(key=lambda x: x[1])
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        for url, _ in all_live: f.write(url + '\n')
+    
+    unique_live = []
+    for url, ms in all_live:
+        is_duplicate = False
+        for u_url, _ in unique_live:
+            if is_same_config(url, u_url):
+                is_duplicate = True
+                break
+        if not is_duplicate:
+            unique_live.append((url, ms))
 
-    print(f"\nГотово! Рабочих: {len(all_live)}")
+    # Запись результата
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        for url, _ in unique_live: 
+            f.write(url + '\n')
+
+    print(f"Готово! Найдено рабочих: {len(all_live)}. После удаления дублей осталось: {len(unique_live)}")
     shutil.rmtree(temp_dir, ignore_errors=True)
 
 if __name__ == '__main__':
