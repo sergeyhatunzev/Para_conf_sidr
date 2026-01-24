@@ -21,7 +21,7 @@ OUTPUT_FILE = "sidr_vless_work.txt"
 TEST_DOMAIN = "https://www.google.com/generate_204"
 TIMEOUT_HTTP = 40  
 CORE_STARTUP_TIMEOUT = 10.0  
-THREADS = 500
+THREADS = 100
 processed_count = 0
 total_proxies_count = 0
 
@@ -221,3 +221,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
