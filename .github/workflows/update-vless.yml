@@ -1,7 +1,7 @@
 name: Update Russian VLESS Configs + Check & Update Time
 on:
   schedule:
-    - cron: '0 */2 * * *' 
+    - cron: '20 */2 * * *' 
   workflow_dispatch:
 
 jobs:
