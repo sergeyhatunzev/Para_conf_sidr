@@ -68,7 +68,9 @@ jobs:
         if: steps.pre-check.outputs.work_changed == 'true' || github.event_name == 'push'
         env:
           PYTHONUNBUFFERED: "1"
-        run: python time_work.py
+        run: |
+          python time_work.py
+          python sidr_vless_time_one_ip.py
 
       - name: Detect all changes
         id: check-changes
