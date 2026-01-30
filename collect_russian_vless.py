@@ -1770,6 +1770,7 @@ print(f"Генерация завершена: {len(allowed_ips_set):,} уник
 # URL источников
 MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
 ADDITIONAL_URLS = [
+    "https://gitverse.ru/api/repos/Vsevj/OBS/raw/branch/master/wwh"
    "https://storage.yandexcloud.net/nllrcn-proxy-subs/subs/prem-links.txt"
    "https://raw.githubusercontent.com/bonymalomalo/vless-auto-update/refs/heads/main/vless-scan/vless.txt",
    "https://s3c3.001.gpucloud.ru/dixsm/htxml",
