@@ -1770,6 +1770,7 @@ print(f"Генерация завершена: {len(allowed_ips_set):,} уник
 # URL источников
 MAIN_URL = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/All_Configs_Sub.txt'
 ADDITIONAL_URLS = [
+    "https://s3c3.001.gpucloud.ru/megofan/script"
     "https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/test.txt"
     "https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Bypass%20%E2%84%962",
     "https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Bypass%20%E2%84%963",
