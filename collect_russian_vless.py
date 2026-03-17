@@ -2336,6 +2336,7 @@ ADDITIONAL_URLS = [
    "https://sub.wetruth.workers.dev/",
    "https://sub.luxusvpn.app",
    "https://uzuk.pro",
+   "https://whiteprime.github.io/xraycheck/configs/white-list_available"
    "https://shz.al/YjSPQaSTpHYNakFnE2ddjcCK:/~@sorenab1,/VIESS,subSOREN",
    "https://raw.githubusercontent.com/bywarm/whitelists-vpns-etc/refs/heads/main/whitelists1-4pda.txt",
    "http://livpn.atwebpages.com/sub.php?token=c829c20769d2112b",
