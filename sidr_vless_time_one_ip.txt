@@ -6,207 +6,207 @@
     #support-url: https://t.me/FullNOOBS
     #profile-web-page-url: https://t.me/FullNOOBS
     #announce: Эта подписка создана морти для его друзей дальнешее распространение подписки карается баном!
-    # работает 9 дней 7 часов 42 минуты 38 секунд (unixtime 1777446974)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.132.46:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0894 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+    # работает 9 дней 11 часов 50 минут 13 секунд (unixtime 1777446974)
+vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.132.46:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#2471 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 9 дней 1 час 26 минут 23 секунды (unixtime 1777469549)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.38:52006?security=tls&flow=xtls-rprx-vision&fp=chrome
+# работает 9 дней 5 часов 33 минуты 58 секунд (unixtime 1777469549)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.38:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome
 
-# работает 7 дней 3 часа 16 минут 49 секунд (unixtime 1777635723)
-vless://75807638-6f19-1f40-ae08-38492ee85c88@178.72.181.18:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=cluster-europe-1.firstvideocdn.ru
+# работает 7 дней 7 часов 24 минуты 24 секунды (unixtime 1777635723)
+vless://75807638-6f19-1f40-ae08-38492ee85c88@178.72.181.18:52006?security=tls&flow=xtls-rprx-vision&fp=firefox&sni=cluster-europe-1.firstvideocdn.ru
 
-# работает 6 дней 18 часов 7 минут 59 секунд (unixtime 1777668653)
+# работает 6 дней 22 часа 15 минут 34 секунды (unixtime 1777668653)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.5:52006?security=tls&encryption=none&insecure=1&headerType=&fp=firefox&type=tcp&allowInsecure=1&flow=xtls-rprx-vision#3383.%20%F0%9F%87%A9%F0%9F%87%AA%20VLESS%20%7C%20SNI%3A%20cl-de-2.edgeflux.ru%20%7C%20TG%3A%20%40wlrustg
 
-# работает 6 дней 3 часа 53 минуты 57 секунд (unixtime 1777719895)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.17:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp#SNI%3A%20cl-ru-1.edgeflux.ru%20%5B%23%D0%A0%D0%9A%D0%9F%5D
+# работает 6 дней 8 часов 1 минута 32 секунды (unixtime 1777719895)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.17:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp
 
-# работает 5 дней 20 часов 50 минут 3 секунды (unixtime 1777745329)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.18:52006?allowInsecure=1&insecure=1&type=tcp&security=tls&path=%2F&host=cl-ru-1.edgeflux.ru&sni=cl-ru-1.edgeflux.ru&flow=xtls-rprx-vision#SNI%3A%20cl-ru-1.edgeflux.ru%20%5B%23%D0%A0%D0%9A%D0%9F%5D
+# работает 6 дней 0 часов 57 минут 38 секунд (unixtime 1777745329)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.18:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp
 
-# работает 5 дней 7 часов 29 минут 33 секунды (unixtime 1777793359)
+# работает 5 дней 11 часов 37 минут 8 секунд (unixtime 1777793359)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.12:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome
 
-# работает 4 дня 22 часа 2 минуты 9 секунд (unixtime 1777827403)
+# работает 5 дней 2 часа 9 минут 44 секунды (unixtime 1777827403)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.34:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome
 
-# работает 4 дня 7 часов 38 минут 52 секунды (unixtime 1777879200)
+# работает 4 дня 11 часов 46 минут 27 секунд (unixtime 1777879200)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.197.2:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome#0132 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 4 дня 4 часа 23 минуты 51 секунда (unixtime 1777890901)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.181.72:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome
+# работает 4 дня 8 часов 31 минута 26 секунд (unixtime 1777890901)
+vless://75807638-6f19-1f40-ae08-38492ee85c88@178.72.181.72:52006?security=tls&encryption=none&insecure=1&headerType=&fp=firefox&type=tcp&allowInsecure=1&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%F0%9F%8C%90%20%7C%20%5BIPv6%5D%20%5B%2ACIDR%5D
 
-# работает 3 дня 23 часа 43 минуты 53 секунды (unixtime 1777907699)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.32:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp&source_name=igareck_vless_reality_rus_mobile_2&provider_id=igareck_vless_reality_rus_mobile_2",#1280.%20VLESS%20%7C%20SNI%3A%20cl-ru-1.edgeflux.ru%20%7C%20TG%3A%20%40wlrustg%20%7C%20Thanks%3A%20%40rkp_channel
+# работает 4 дня 3 часа 51 минута 28 секунд (unixtime 1777907699)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.32:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp
 
-# работает 3 дня 23 часа 43 минуты 53 секунды (unixtime 1777907699)
+# работает 4 дня 3 часа 51 минута 28 секунд (unixtime 1777907699)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.41:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome
 
-# работает 3 дня 23 часа 43 минуты 53 секунды (unixtime 1777907699)
-vless://75807638-6f19-1f40-ae08-38492ee85c88@178.72.181.34:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0159 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+# работает 4 дня 3 часа 51 минута 28 секунд (unixtime 1777907699)
+vless://75807638-6f19-1f40-ae08-38492ee85c88@178.72.181.34:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome
 
-# работает 3 дня 17 часов 52 минуты 22 секунды (unixtime 1777928790)
-vless://75807638-6f19-0190-ae08-38492ee85c88@178.72.181.41:52006?flow=xtls-rprx-vision&headertype=none&host=cl-oth-1.edgeflux.ru&path=%2F&security=tls&type=tcp#3241.%20VLESS%20%7C%20SNI%3A%20cl-oth-1.edgeflux.ru%20%7C%20TG%3A%20%40wlrustg%20%7C%20Thanks%3A%20%40rkp_channel
+# работает 3 дня 21 час 59 минут 57 секунд (unixtime 1777928790)
+vless://75807638-6f19-0190-ae08-38492ee85c88@178.72.181.41:52006?flow=xtls-rprx-vision&headertype=none&host=cl-oth-1.edgeflux.ru&path=%2F&security=tls&type=tcp#2293.%20VLESS%20%7C%20SNI%3A%20cl-oth-1.edgeflux.ru%20%7C%20TG%3A%20%40wlrustg%20%7C%20Thanks%3A%20%40rkp_channel
 
-# работает 3 дня 17 часов 52 минуты 22 секунды (unixtime 1777928790)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.197.68:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome#2048 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 3 дня 17 часов 52 минуты 22 секунды (unixtime 1777928790)
+# работает 3 дня 21 час 59 минут 57 секунд (unixtime 1777928790)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.22:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1384 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 3 дня 14 часов 14 минут 34 секунды (unixtime 1777941858)
+# работает 3 дня 21 час 59 минут 57 секунд (unixtime 1777928790)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.197.68:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome#2048 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+
+# работает 3 дня 18 часов 22 минуты 9 секунд (unixtime 1777941858)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.10:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0050 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 3 дня 7 часов 57 минут 47 секунд (unixtime 1777964465)
+# работает 3 дня 12 часов 5 минут 22 секунды (unixtime 1777964465)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@92.53.90.237:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome#1294 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 3 дня 1 час 36 минут 29 секунд (unixtime 1777987343)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.13:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp&source_name=igareck_vless_reality_rus_mobile_2&provider_id=igareck_vless_reality_rus_mobile_2#1246.%20VLESS%20%7C%20SNI%3A%20cl-ru-1.edgeflux.ru%20%7C%20TG%3A%20%40wlrustg%20%7C%20Thanks%3A%20%40rkp_channel
+# работает 3 дня 5 часов 44 минуты 4 секунды (unixtime 1777987343)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.13:52006?allowInsecure=1&flow=xtls-rprx-vision&host=cl-ru-1.edgeflux.ru&path=/&security=tls&sni=cl-ru-1.edgeflux.ru&type=tcp
 
-# работает 3 дня 1 час 36 минут 29 секунд (unixtime 1777987343)
+# работает 3 дня 5 часов 44 минуты 4 секунды (unixtime 1777987343)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.37:52006?type=tcp&security=tls&flow=xtls-rprx-vision#0034 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 2 дня 14 часов 21 минута 20 секунд (unixtime 1778027852)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.16:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0288 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+# работает 2 дня 18 часов 28 минут 55 секунд (unixtime 1778027852)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.16:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0570 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 2 дня 7 часов 39 минут 39 секунд (unixtime 1778051953)
+# работает 2 дня 11 часов 47 минут 14 секунд (unixtime 1778051953)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.153:52006?type=tcp&security=tls&flow=xtls-rprx-vision#0011 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 2 дня 1 час 21 минута 38 секунд (unixtime 1778074634)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.154:52006?type=tcp&security=tls&flow=xtls-rprx-vision#0369 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+# работает 2 дня 5 часов 29 минут 13 секунд (unixtime 1778074634)
+vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.154:52006?allowInsecure=1&type=tcp&security=tls&flow=xtls-rprx-vision
 
-# работает 1 день 15 часов 44 минуты 11 секунд (unixtime 1778109281)
-vless://45e55198-a5ad-4f19-bb39-236822141d25@188.72.103.3:443?allowInsecure=1&fp=firefox&host=cdn.lovecrafty.link&path=/stream/updates/b66b78d7/019dee35-0199-eeb7-718d-b21a426c1f478&security=tls&sni=cdn.tracker.yandex.net&type=ws
+# работает 1 день 19 часов 51 минута 46 секунд (unixtime 1778109281)
+vless://45e55198-a5ad-4f19-bb39-236822141d25@188.72.103.3:443?allowInsecure=1&fp=firefox&host=cdn.lovecrafty.link&path=/stream/updates/b66b78d7/019dee35-0199-d98f-7135-8f251a76cca8c&security=tls&sni=cdn.tracker.yandex.net&type=ws
 
-# работает 1 день 7 часов 41 минута 55 секунд (unixtime 1778138217)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.249.3:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=cluster-russia-1.firstvideocdn.ru#2080 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 1 день 7 часов 41 минута 55 секунд (unixtime 1778138217)
+# работает 1 день 11 часов 49 минут 30 секунд (unixtime 1778138217)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.29:52006?allowInsecure=1&encryption=none&flow=xtls-rprx-vision&security=tls&type=tcp # [ By EbraSha ]
 
-# работает 1 день 7 часов 41 минута 55 секунд (unixtime 1778138217)
+# работает 1 день 11 часов 49 минут 30 секунд (unixtime 1778138217)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.23:52006?allowInsecure=1&encryption=none&flow=xtls-rprx-vision&fp=firefox&security=tls&type=tcp # [ By EbraSha ]
 
-# работает 1 день 7 часов 41 минута 55 секунд (unixtime 1778138217)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.197.3:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome
+# работает 1 день 5 часов 12 минут 54 секунды (unixtime 1778162013)
+vless://75356919-6ece-455c-ba7a-9f042a60d2c5@178.72.186.76:443?type=ws&headerType=none&security=none&encryption=none&path=%2Fstream&host=rbc.ru#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5B%2ACIDR%5D
 
-# работает 1 день 1 час 5 минут 19 секунд (unixtime 1778162013)
-vless://75356919-6ece-455c-ba7a-9f042a60d2c5@178.72.186.76:443?encryption=none&type=ws&security=none&path=%2Fstream#%F0%9F%87%B7%F0%9F%87%BA%20Selectel%20%E2%80%94%20%2331
+# работает 1 день 5 часов 12 минут 54 секунды (unixtime 1778162013)
+vless://22f65fc9-4dee-456c-a213-2a025389af31@109.120.189.213:58652?type=tcp&security=reality&fp=firefox&pbk=VZq5atMvE_1AW0nXcn4opuxZdrSu3zy3kP7YTdGj6EQ&sid=28&sni=www.apple.com&spx=/GWZCgGnbVzCEVS8#0163 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 1 день 1 час 5 минут 19 секунд (unixtime 1778162013)
-vless://22f65fc9-4dee-456c-a213-2a025389af31@109.120.189.213:58652?type=tcp&security=reality&fp=firefox&pbk=VZq5atMvE_1AW0nXcn4opuxZdrSu3zy3kP7YTdGj6EQ&sid=28&sni=www.apple.com&spx=/GWZCgGnbVzCEVS8#2022 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 20 часов 38 минут 55 секунд (unixtime 1778177997)
+# работает 1 день 0 часов 46 минут 30 секунд (unixtime 1778177997)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.20:52006?allowInsecure=1&encryption=none&flow=xtls-rprx-vision&fp=firefox&security=tls&type=tcp # [ By EbraSha ]
 
-# работает 20 часов 38 минут 55 секунд (unixtime 1778177997)
-vless://7bbc52f8-e8d3-48cb-8b62-a3bc50c862c1@79.174.91.100:2443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=5w9AftPH_705ynMzcG03D3z61O1qegNp6WFL6jOXxRA&sid=e035146d93da51a9&sni=ads.x5.ru&spx=/#2918 | 🇷🇺 Russia | 🏳️ CIDR-REGRU | VLESS | TG: @YoutubeUnBlockRu
+# работает 1 день 0 часов 46 минут 30 секунд (unixtime 1778177997)
+vless://7bbc52f8-e8d3-48cb-8b62-a3bc50c862c1@79.174.91.100:2448?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=5w9AftPH_705ynMzcG03D3z61O1qegNp6WFL6jOXxRA&sid=7b374423e3f0f5fb&sni=m.ok.ru&spx=/#4191 | 🇷🇺 Russia | 🏳️ CIDR-REGRU | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 15 часов 55 минут 11 секунд (unixtime 1778195021)
+# работает 20 часов 2 минуты 46 секунд (unixtime 1778195021)
 vless://75807638-6f19-2710-ae08-38492ee85c88@178.72.182.24:52006?type=tcp&headerType=none&security=tls&encryption=none&sni=ads.x5.ru&flow=xtls-rprx-vision&insecure=1%252522%25252C#4339.%20VLESS%20%7C%20SNI%3A%20ads.x5.ru%20%7C%20TG%3A%20%40wlrustg%20%7C%20Thanks%3A%20%40rkp_channel
 
-# работает 15 часов 55 минут 11 секунд (unixtime 1778195021)
-vless://75807638-6f19-0190-ae08-38492ee85c88@178.72.182.25:52006?flow=xtls-rprx-vision&host=cl-oth-1.edgeflux.ru&path=%2F&security=tls&sni=cl-oth-1.edgeflux.ru&type=tcp#SNI%3A%20cl-oth-1.edgeflux.ru%20%5B%23%D0%A0%D0%9A%D0%9F%5D
+# работает 20 часов 2 минуты 46 секунд (unixtime 1778195021)
+vless://75807638-6f19-0190-ae08-38492ee85c88@178.72.182.25:52006?security=tls&flow=xtls-rprx-vision&sni=cl-oth-1.edgeflux.ru&type=tcp&host=cl-oth-1.edgeflux.ru&path=/&allowInsecure=1
 
-# работает 15 часов 55 минут 11 секунд (unixtime 1778195021)
-vless://5ad9f8f3-40dc-457b-942b-d210825d7627@212.233.94.98:8443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=3JGwSDrfkiCPdU3rvQP5m0z4Ag_UB_2w8Qq3VMXmo28&sid=abc323&sni=sun6-22.userapi.com#%F0%9F%87%B2%F0%9F%87%AA%20%5B%D0%91%D0%A1-VL%5D%20%D0%A7%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D0%B8%D1%8F%20%2317875%20%7C%20%D0%A0%D0%BE%D1%81%D0%A2%D1%83%D0%BD%D0%BD%D0%B5%D0%BB%D1%8C
+# работает 16 часов 35 минут 53 секунды (unixtime 1778207434)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@80.93.187.210:52006?type=tcp&security=tls&flow=xtls-rprx-vision&provider_id=igareck_vless_reality_rus_mobile&source_name=igareck_vless_reality_rus_mobile#2950 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 12 часов 28 минут 18 секунд (unixtime 1778207434)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@80.93.187.210:52006?type=tcp&security=tls&flow=xtls-rprx-vision#1832 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 16 часов 35 минут 53 секунды (unixtime 1778207434)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@80.93.187.2:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#3813 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 12 часов 28 минут 18 секунд (unixtime 1778207434)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@80.93.187.2:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0743 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 16 часов 35 минут 53 секунды (unixtime 1778207434)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@212.41.8.216:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=212.41.8.216#0314 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 12 часов 28 минут 18 секунд (unixtime 1778207434)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@212.41.8.216:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=212.41.8.216#1679 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 16 часов 35 минут 53 секунды (unixtime 1778207434)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.197.3:52006?&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=cluster-russia-1.firstvideocdn.ru&type=tcp&headerType=none&host=cluster-russia-1.firstvideocdn.ru&path=/":#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5B%2ACIDR%5D
 
-# работает 12 часов 28 минут 18 секунд (unixtime 1778207434)
-vless://7bbc52f8-e8d3-48cb-8b62-a3bc50c862c1@79.174.95.135:5443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=OtGux0Ty5TSzfIvlHVd4q_TdYbRUHKbS8WCxmpHJx18&sid=9962b03c99a36659&sni=ads.x5.ru&spx=/#1648 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 16 часов 35 минут 53 секунды (unixtime 1778207434)
+vless://a277a703-e767-4ed4-a963-89fe26d91162@79.174.95.200:5443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=OtGux0Ty5TSzfIvlHVd4q_TdYbRUHKbS8WCxmpHJx18&sid=bf6335ae24de4286&sni=ads.x5.ru&spx=/#0792 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 12 часов 28 минут 18 секунд (unixtime 1778207434)
-vless://ed2b309c-0c30-4caf-9cfc-a6693cb40ccc@79.174.95.200:5447?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=OtGux0Ty5TSzfIvlHVd4q_TdYbRUHKbS8WCxmpHJx18&sid=542c8ba8f82ea453&sni=st.okcdn.ru&spx=/#1424 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 16 часов 35 минут 53 секунды (unixtime 1778207434)
+vless://3b6ed23e-7ddc-4a86-9637-c07001805670@79.174.95.135:5443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=OtGux0Ty5TSzfIvlHVd4q_TdYbRUHKbS8WCxmpHJx18&sid=93072393e9e92346&sni=ads.x5.ru&spx=#3332 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 12 часов 28 минут 18 секунд (unixtime 1778207434)
-vless://6cdf5172-8679-4e26-aea8-09a32e48547a@79.174.92.31:3443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=y8Xef3AIk7TEbLdu2WkC1NX0jtdxrSs9xsAxLqkSXA8&sid=9d8e40b1e50c3b63&sni=ads.x5.ru&spx=/#1058 | 🇷🇺 Russia | 🏳️ CIDR-REGRU | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.28:52006?type=tcp,&security=tls&flow=xtls-rprx-vision&sni=cl-ru-2.edgeflux.ru#2007 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.28:52006?type=tcp,&security=tls&flow=xtls-rprx-vision&sni=cl-ru-2.edgeflux.ru#2170 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.249.96:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#4566 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.249.96:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1352 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.121.44:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#3193 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@188.246.226.14:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&provider_id=igareck_vless_reality_rus_mobile&source_name=igareck_vless_reality_rus_mobile#1860 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.74.108:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#3511 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.151:52006?type=tcp&security=tls&flow=xtls-rprx-vision&sni=cl-de-2.edgeflux.ru#0764 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.117.200:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#0445 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://75807638-6f19-0190-ae08-38492ee85c88@5.188.156.115:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1786 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.137.170:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#2653 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.137.170:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#2154 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.119.237:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#3521 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.50.27:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#0794 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.38.228:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#4903 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.6.165:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#1333 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.102.80:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#4574 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.102.80:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#0428 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.50.27:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#4332 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://5ad9f8f3-40dc-457b-942b-d210825d7627@212.233.94.155:8443?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=sun6-22.userapi.com&pbk=3JGwSDrfkiCPdU3rvQP5m0z4Ag_UB_2w8Qq3VMXmo28&sid=abc32300&fp=firefox&alpn=http/1.1&headertype=none#2824.%20VLESS%20%7C%20SNI%3A%20sun6-22.userapi.com%20%7C%20TG%3A%20%40wlrustg%20%7C%20Thanks%3A%20%40rkp_channel
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.130.17:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=www.vk.com#3052 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-VK | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.117.200:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#0067 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://75807638-6f19-0190-ae08-38492ee85c88@5.188.156.115:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#2946 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.121.44:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#1742 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.19.91:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#0442 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://a8ebf356-fdf3-4bec-8e97-2107a4115abd@217.16.30.58:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=jSx3_X_tBAcNgp7SrKSfZnr5WN0cTN2ShEJv4rHceQU&sni=max.ru#2583 | 🇷🇺 Russia | 🏳️ CIDR-VK | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.189.7:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#3858 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.130.17:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=www.vk.com#0325 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-VK | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.150.45:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#2448 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.189.7:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#1514 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://a8ebf356-fdf3-4bec-8e97-2107a4115abd@217.16.30.58:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=jSx3_X_tBAcNgp7SrKSfZnr5WN0cTN2ShEJv4rHceQU&sni=max.ru#0050 | 🇷🇺 Russia | 🏳️ CIDR-VK | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.74.108:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#1681 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.6.165:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#0430 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.170.185:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#0788 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.170.185:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#1904 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.116.251:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#1415 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 11 часов 59 минут 37 секунд (unixtime 1778224010)
+vless://d1bba76e-fa65-4772-a3ce-ea3ede58f343@79.174.92.31:3443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=y8Xef3AIk7TEbLdu2WkC1NX0jtdxrSs9xsAxLqkSXA8&sid=9d8e40b1e50c3b63&sni=ads.x5.ru&spx=/#2466 | 🇷🇺 Russia | 🏳️ CIDR-REGRU | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.7.67:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#1844 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.119.237:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#0454 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.38.228:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=max.ru#0606 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@51.250.19.91:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#1616 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 7 часов 52 минуты 2 секунды (unixtime 1778224010)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.150.45:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#2084 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 3 часа 41 минута 4 секунды (unixtime 1778239068)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.124.109:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=firefox&alpn=http/1.1
-
-# работает 3 часа 41 минута 4 секунды (unixtime 1778239068)
+# работает 7 часов 48 минут 39 секунд (unixtime 1778239068)
 vless://75807638-6f19-1f40-ae08-38492ee85c88@78.24.180.224:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0087 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 3 часа 41 минута 4 секунды (unixtime 1778239068)
-vless://5ad9f8f3-40dc-457b-942b-d210825d7627@83.166.232.135:8443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=3JGwSDrfkiCPdU3rvQP5m0z4Ag_UB_2w8Qq3VMXmo28&sid=abc323&sni=sun6-22.userapi.com#2900 | 🇷🇺 Russia | 🏳️ SNI-VK | VLESS | TG: @YoutubeUnBlockRu
+# работает 7 часов 48 минут 39 секунд (unixtime 1778239068)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.111.68:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#4871 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 3 часа 41 минута 4 секунды (unixtime 1778239068)
-vless://946e563b-1ff3-46e3-90ce-718065185eaa@158.160.111.68:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=max.ru#0718 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-MAX | VLESS | TG: @YoutubeUnBlockRu
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.182.3:52006?allowInsecure=1&type=tcp",&security=tls&flow=xtls-rprx-vision&sni=cl-ru-2.edgeflux.ru
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.249.3:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=cluster-russia-1.firstvideocdn.ru&path=/":&host=cluster-russia-1.firstvideocdn.ru#0757 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.14:52006?allowInsecure=1&insecure=1&type=tcp&security=tls&sni=cl-de-2.edgeflux.ru&fp=firefox&flow=xtls-rprx-vision#3353.%20%F0%9F%87%A9%F0%9F%87%AA%20VLESS%20%7C%20SNI%3A%20cl-de-2.edgeflux.ru%20%7C%20TG%3A%20%40wlrustg
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@89.248.207.37:443?type=ws&security=tls&encryption=none&sni=sni.111000.v6.navy&path=/%3FTelegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%2B%2540WangCai2%3D&host=sni.111000.v6.navy&ed=2560&eh=Sec-WebSocket-Protocol#https://t.me/YoutubeUnBlockRu
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://75807638-6f19-0fa0-ae08-38492ee85c88@5.182.4.182:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1728 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://616f5216-aaf1-4983-8c79-7ee9b2dfdf02@158.160.250.161:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=z9dOqH2pEKYk8V7opl4npiUUSXzj6yRHDYj9Xl95znY&sid=b99e82f6d99f6e&sni=www.apple.com&spx=/#1264 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | VLESS | TG: @YoutubeUnBlockRu
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://49413636-c6ba-4db1-a077-e2b864771a2b@158.160.235.238:52006?flow=xtls-rprx-vision&security=reality&sni=eh.vk.com&pbk=DaIRouGSxxQDEv9WKRxD79b2Vt0fsw4yQOTeAmXUYCM&sid=96962fed&fp=qq
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.128.195:5555?encryption=none&type=tcp&security=reality&flow=xtls-rprx-vision&sni=max.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&fp=qq#TCP, Max [V.O.I.D]
+
+# работает 4 часа 7 минут 35 секунд (unixtime 1778252332)
+vless://946e563b-1ff3-46e3-90ce-718065185eaa@84.201.129.214:5555?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&sni=www.vk.com#1905 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-VK | VLESS | TG: @YoutubeUnBlockRu
 
