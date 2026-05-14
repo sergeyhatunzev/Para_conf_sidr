@@ -6,108 +6,108 @@
     #support-url: https://t.me/FullNOOBS
     #profile-web-page-url: https://t.me/FullNOOBS
     #announce: Эта подписка создана морти для его друзей дальнешее распространение подписки карается баном!
-    # работает 8 дней 4 часа 23 минуты 54 секунды (unixtime 1778074634)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.154:52006?allowInsecure=1&type=tcp&security=tls&flow=xtls-rprx-vision
+    # работает 8 дней 7 часов 32 минуты 26 секунд (unixtime 1778074634)
+vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.154:52006?type=tcp&security=tls&flow=xtls-rprx-vision#0369 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 7 дней 18 часов 46 минут 27 секунд (unixtime 1778109281)
-vless://45e55198-a5ad-4f19-bb39-236822141d25@188.72.103.3:443?encryption=none&type=ws&security=tls&path=%2Fstream%2Fupdates%2F130cdea4%2F019dee35-0199-dd7e-7323-a62ad725bba07&host=cdn.lovecrafty.link&fp=firefox&sni=cdn.tracker.yandex.net#WS%2C%20%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20%5BV.O.I.D%5D
+# работает 7 дней 21 час 54 минуты 59 секунд (unixtime 1778109281)
+vless://45e55198-a5ad-4f19-bb39-236822141d25@188.72.103.3:443?allowInsecure=1&fp=firefox&host=cdn.lovecrafty.link&path=/stream/updates/130cdea4/019dee35-0199-d528-7ad9-9f1203bcb9b0f&security=tls&sni=cdn.tracker.yandex.net&type=ws
 
-# работает 6 дней 3 часа 2 минуты 16 секунд (unixtime 1778252332)
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@5.182.4.182:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#3746 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
+# работает 6 дней 6 часов 10 минут 48 секунд (unixtime 1778252332)
+vless://75807638-6f19-0fa0-ae08-38492ee85c88@5.182.4.182:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1728 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 5 дней 22 часа 54 минуты 41 секунда (unixtime 1778267187)
+# работает 6 дней 2 часа 3 минуты 13 секунд (unixtime 1778267187)
 vless://75807638-6f19-0fa0-ae08-38492ee85c88@178.72.133.161:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1728 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 5 дней 15 часов 21 минута 41 секунда (unixtime 1778294367)
-vless://2075f8d7-0f7a-Fade-9de5-e77632611a13@195.209.82.149:443?type=ws&security=tls&fp=firefox&sni=s28233.cdn.ngenix.net&host=s28233.cdn.ngenix.net&alpn=h2,http/1.1
-
-# работает 5 дней 15 часов 21 минута 41 секунда (unixtime 1778294367)
+# работает 5 дней 18 часов 30 минут 13 секунд (unixtime 1778294367)
 vless://a3b07a39-dbbc-Fade-b5de-a5797996c246@195.209.88.216:443?type=ws&security=tls&fp=firefox&sni=s28233.cdn.ngenix.net&host=s28233.cdn.ngenix.net&alpn=h2,http/1.1
 
-# работает 5 дней 10 часов 45 минут 0 секунд (unixtime 1778310968)
-vless://75807638-6f19-07d0-ae08-38492ee85c88@188.246.226.14:52006?security=tls&type=tcp&allowInsecure=1&fp=firefox&flow=xtls-rprx-vision&encryption=none&source_name=igareck_vless_reality_rus_mobile&provider_id=igareck_vless_reality_rus_mobile#511.%20%F0%9F%87%B7%F0%9F%87%BA%20VLESS%20%7C%20TG%3A%20%40wlrustg
+# работает 5 дней 18 часов 30 минут 13 секунд (unixtime 1778294367)
+vless://2075f8d7-0f7a-Fade-9de5-e77632611a13@195.209.82.149:443?type=ws&security=tls&fp=firefox&sni=s28233.cdn.ngenix.net&host=s28233.cdn.ngenix.net&alpn=h2,http/1.1#2263 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 5 дней 10 часов 45 минут 0 секунд (unixtime 1778310968)
+# работает 5 дней 13 часов 53 минуты 32 секунды (unixtime 1778310968)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@188.246.226.14:52006?security=tls&type=tcp&allowInsecure=1&fp=firefox&flow=xtls-rprx-vision&encryption=none&source_name=igareck_vless_reality_rus_mobile&provider_id=igareck_vless_reality_rus_mobile#929.%20%F0%9F%87%B7%F0%9F%87%BA%20VLESS%20%7C%20TG%3A%20%40wlrustg
+
+# работает 5 дней 13 часов 53 минуты 32 секунды (unixtime 1778310968)
 vless://6e42b88a-b78f-Fade-b164-791160cbaef5@195.209.88.180:443?type=ws&security=tls&fp=firefox&sni=s28233.cdn.ngenix.net&host=s28233.cdn.ngenix.net&alpn=h2,http/1.1
 
-# работает 5 дней 0 часов 52 минуты 3 секунды (unixtime 1778346545)
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@5.182.5.199:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=eu.active-engine.ru
+# работает 5 дней 4 часа 0 минут 35 секунд (unixtime 1778346545)
+vless://75807638-6f19-0fa0-ae08-38492ee85c88@5.182.5.199:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=eu.active-engine.ru#2121 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 5 дней 0 часов 52 минуты 3 секунды (unixtime 1778346545)
+# работает 5 дней 4 часа 0 минут 35 секунд (unixtime 1778346545)
 vless://75807638-6f19-0fa0-ae08-38492ee85c88@5.182.4.137:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=eu.active-engine.ru#2298 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 4 дня 1 час 11 минут 48 секунд (unixtime 1778431760)
+# работает 4 дня 4 часа 20 минут 20 секунд (unixtime 1778431760)
 vless://75807638-6f19-0fa0-ae08-38492ee85c88@178.72.133.142:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=eu.active-engine.ru#2158 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 3 дня 17 часов 56 минут 6 секунд (unixtime 1778457902)
-vless://75807638-6f19-2710-ae08-38492ee85c88@87.228.29.131:52006?flow=xtls-rprx-vision&encryption=none&type=tcp&security=tls&fp=chrome#408.%20%F0%9F%87%B5%F0%9F%87%B1%20VLESS%20%7C%20TG%3A%20%40wlrustg
+# работает 3 дня 21 час 4 минуты 38 секунд (unixtime 1778457902)
+vless://75807638-6f19-2710-ae08-38492ee85c88@87.228.29.131:52006?flow=xtls-rprx-vision&encryption=none&type=tcp&security=tls&fp=chrome#%F0%9F%87%B5%F0%9F%87%B1%20Poland%20%E2%80%94%20%23349
 
-# работает 2 дня 18 часов 58 минут 17 секунд (unixtime 1778540571)
-vless://75807638-6f19-0bb8-ae08-38492ee85c88@82.202.197.2:52006/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls # [ By EbraSha ]
-
-# работает 2 дня 18 часов 58 минут 17 секунд (unixtime 1778540571)
+# работает 2 дня 22 часа 6 минут 49 секунд (unixtime 1778540571)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.10:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0050 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 2 дня 18 часов 58 минут 17 секунд (unixtime 1778540571)
+# работает 2 дня 22 часа 6 минут 49 секунд (unixtime 1778540571)
+vless://75807638-6f19-07d0-ae08-38492ee85c88@82.202.197.2:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome#0132 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+
+# работает 2 дня 22 часа 6 минут 49 секунд (unixtime 1778540571)
 vless://6e42b88a-b78f-fade-b164-791160cbaef5@195.209.90.178:443?type=ws&headerType=none&security=tls&encryption=none&sni=s28233.cdn.ngenix.net&fp=firefox&alpn=h2%2Chttp%2F1.1&path=%2F&host=s28233.cdn.ngenix.net&insecure=0#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA%20t.me%2Frjsxrd
 
-# работает 2 дня 18 часов 58 минут 17 секунд (unixtime 1778540571)
-vless://ddd7b044-6a87-Fade-8911-e0be8fdbf4a2@212.193.147.245:443?encryption=none&security=tls&sni=s28233.cdn.ngenix.net&fp=firefox&insecure=0&allowInsecure=0&type=ws&path=%2F#🏳️ UNKNOWN VLESS 193
+# работает 2 дня 22 часа 6 минут 49 секунд (unixtime 1778540571)
+vless://ddd7b044-6a87-Fade-8911-e0be8fdbf4a2@212.193.147.245:443?encryption=none&security=tls&sni=s28233.cdn.ngenix.net&fp=firefox&insecure=0&allowInsecure=0&type=ws&path=%2F#🏳️ UNKNOWN VLESS 407
 
-# работает 2 дня 15 часов 41 минута 21 секунда (unixtime 1778552387)
+# работает 2 дня 18 часов 49 минут 53 секунды (unixtime 1778552387)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.22:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#1384 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 2 дня 15 часов 41 минута 21 секунда (unixtime 1778552387)
+# работает 2 дня 18 часов 49 минут 53 секунды (unixtime 1778552387)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@87.228.92.153:52006?type=tcp&security=tls&flow=xtls-rprx-vision#0011 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 1 день 20 часов 43 минуты 56 секунд (unixtime 1778620632)
+# работает 1 день 23 часа 52 минуты 28 секунд (unixtime 1778620632)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.132.46:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#2903 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 1 день 17 часов 17 минут 24 секунды (unixtime 1778633024)
+# работает 1 день 20 часов 25 минут 56 секунд (unixtime 1778633024)
 vless://75807638-6f19-0fa0-ae08-38492ee85c88@87.228.29.233:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#2254 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 1 день 17 часов 17 минут 24 секунды (unixtime 1778633024)
+# работает 1 день 20 часов 25 минут 56 секунд (unixtime 1778633024)
 vless://75807638-6f19-0190-ae08-38492ee85c88@5.188.156.115:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=chrome#0324 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 23 часа 45 минут 42 секунды (unixtime 1778696126)
+# работает 1 день 2 часа 54 минуты 14 секунд (unixtime 1778696126)
 vless://75807638-6f19-07d0-ae08-38492ee85c88@92.53.90.237:52006?type=tcp&security=tls&encryption=none&flow=xtls-rprx-vision&fp=chrome#1294 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 23 часа 45 минут 42 секунды (unixtime 1778696126)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.162.41:52006?type=tcp&security=tls&fp=firefox&flow=xtls-rprx-vision # ⚡ [By EbraSha]
+# работает 1 день 2 часа 54 минуты 14 секунд (unixtime 1778696126)
+vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.162.41:52006?type=tcp&security=tls&fp=firefox&flow=xtls-rprx-vision#v2ray_dalghak
 
-# работает 23 часа 45 минут 42 секунды (unixtime 1778696126)
-vless://0e3a9376-1bf0-4b9e-a328-f28083bf6c34@46.243.234.151:8443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=sun9-38.userapi.com&pbk=4iuR2mv0RnnPZbwvQuZ4L07Bois8hMUczEbMeDF0iRc&sid=fb38c1c83009e1#%5BOpenRay%5D%20%F0%9F%87%B7%F0%9F%87%BA%20RU-24003
+# работает 1 день 2 часа 54 минуты 14 секунд (unixtime 1778696126)
+vless://0e3a9376-1bf0-4b9e-a328-f28083bf6c34@46.243.234.151:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=sun9-38.userapi.com&fp=firefox&pbk=4iuR2mv0RnnPZbwvQuZ4L07Bois8hMUczEbMeDF0iRc&sid=fb38c1c83009e1&spx=%2F&type=tcp&headerType=none#%F0%9F%87%A9%F0%9F%87%AA%20wLTE
 
-# работает 20 часов 43 минуты 46 секунд (unixtime 1778707042)
-vless://8fef09bc-a48a-44ae-95cd-118e58ab796a@158.160.38.221:443?fragment=100-200%2C10-20%2Ctlshello%2C100-200&fp=firefox&type=tcp&pbk=pxKqxFKiZjeTlVKv1JM7DozcbBJYp-_nK75KS1JVpSE&sid=1a1e145c&headerType=none&spx=%2F&security=reality&flow=xtls-rprx-vision&sni=max.ru&r=4f79f1#%5BOpenRay%5D%20%F0%9F%87%B7%F0%9F%87%BA%20RU-24040
+# работает 23 часа 52 минуты 18 секунд (unixtime 1778707042)
+vless://0e3a9376-1bf0-4b9e-a328-f28083bf6c34@51.250.47.0:8443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=ads.x5.ru&pbk=4iuR2mv0RnnPZbwvQuZ4L07Bois8hMUczEbMeDF0iRc&sid=fb38c1c83009e1#4Nika-5401
 
-# работает 20 часов 43 минуты 46 секунд (unixtime 1778707042)
-vless://0e3a9376-1bf0-4b9e-a328-f28083bf6c34@51.250.47.0:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=firefox&pbk=4iuR2mv0RnnPZbwvQuZ4L07Bois8hMUczEbMeDF0iRc&sid=fb38c1c83009e1&spx=%2F&type=tcp&headerType=none#%5BOpenRay%5D%20%F0%9F%87%B7%F0%9F%87%BA%20RU-23976
-
-# работает 17 часов 15 минут 28 секунд (unixtime 1778719540)
+# работает 20 часов 24 минуты 0 секунд (unixtime 1778719540)
 vless://75807638-6f19-2710-ae08-38492ee85c88@87.228.124.109:52006?flow=xtls-rprx-vision&security=tls&sni=de.active-engine.ru&type=tcp#26.%20VLESS%20%7C%20SNI%3A%20de.active-engine.ru%20%7C%20TG%3A%20%40wlrustg
 
-# работает 17 часов 15 минут 28 секунд (unixtime 1778719540)
-vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.21:52006?type=tcp&security=tls&flow=xtls-rprx-vision&sni=cl-de-2.edgeflux.ru
-
-# работает 17 часов 15 минут 28 секунд (unixtime 1778719540)
+# работает 20 часов 24 минуты 0 секунд (unixtime 1778719540)
 vless://49413636-c6ba-4db1-a077-e2b864771a2b@83.166.238.232:52006?flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&pbk=DaIRouGSxxQDEv9WKRxD79b2Vt0fsw4yQOTeAmXUYCM&sid=bf45&fp=qq
 
-# работает 17 часов 15 минут 28 секунд (unixtime 1778719540)
+# работает 20 часов 24 минуты 0 секунд (unixtime 1778719540)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.37:52006?type=tcp",&security=tls&flow=xtls-rprx-vision&sni=cl-de-2.edgeflux.ru#1051 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 17 часов 15 минут 28 секунд (unixtime 1778719540)
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@37.9.5.175:443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=max.ru&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2#%5BOpenRay%5D%20%F0%9F%87%B7%F0%9F%87%BA%20RU-24039
-
-# работает 17 часов 15 минут 28 секунд (unixtime 1778719540)
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.238.32:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ads.x5.ru&fp=firefox&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2#%5BOpenRay%5D%20%F0%9F%87%B7%F0%9F%87%BA%20RU-23991
-
-# работает 4 часа 37 минут 35 секунд (unixtime 1778765013)
+# работает 7 часов 46 минут 7 секунд (unixtime 1778765013)
 vless://75807638-6f19-0fa0-ae08-38492ee85c88@87.228.10.124:52006?type=tcp&security=tls&flow=xtls-rprx-vision&fp=firefox&sni=eu.active-engine.ru
 
-# работает 4 часа 37 минут 35 секунд (unixtime 1778765013)
+# работает 7 часов 46 минут 7 секунд (unixtime 1778765013)
 vless://75807638-6f19-01f4-ae08-38492ee85c88@178.72.182.14:52006?type=tcp&security=tls&flow=xtls-rprx-vision&sni=cl-de-2.edgeflux.ru#3233 | 🌐 Unknown | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 4 часа 37 минут 35 секунд (unixtime 1778765013)
+# работает 7 часов 46 минут 7 секунд (unixtime 1778765013)
 vless://49413636-c6ba-4db1-a077-e2b864771a2b@158.160.235.238:52006?flow=xtls-rprx-vision&security=reality&sni=eh.vk.com&pbk=DaIRouGSxxQDEv9WKRxD79b2Vt0fsw4yQOTeAmXUYCM&sid=96962fed&fp=qq
+
+# работает 3 часа 8 минут 32 секунды (unixtime 1778781668)
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@89.248.207.37:443?type=ws&security=tls&encryption=none&sni=sni.111000.v6.navy&host=sni.111000.v6.navy
+
+# работает 3 часа 8 минут 32 секунды (unixtime 1778781668)
+vless://6183c1c0-2853-4e83-b31b-19527950b23b@90.156.215.164:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=gZakFTUC23DnCPU63fEhj8ywghbAGDGiUHlc7RB_8Go&sid=4e89f9e0c016374f&sni=ads.x5.ru#6011 | 🇷🇺 Russia | 🏳️ SNI-X5 | VLESS | TG: @YoutubeUnBlockRu
+
+# работает 3 часа 8 минут 32 секунды (unixtime 1778781668)
+vless://0e3a9376-1bf0-4b9e-a328-f28083bf6c34@46.243.233.212:2082?flow=xtls-rprx-vision&fp=firefox&headertype=none&pbk=o6zlxOHBtqwPdJNatvbmEHH_Ar6SJjJQqUViymfxHmo&security=reality&sid=cead3d22ec&sni=eh1.vk.com&spx=%2F&type=tcp#%5BOpenRay%5D%20%F0%9F%87%B7%F0%9F%87%BA%20RU-23984
+
+# работает 3 часа 8 минут 32 секунды (unixtime 1778781668)
+vless://69fb5fba-d093-Fade-941c-08a06fc25db9@37.9.4.82:443?type=grpc&security=reality&fp=firefox&pbk=o6jbbDkNF_5v8BlkIDl4NKhBiXTxCGms-NPmFkuQNXA&sni=ads.x5.ru#t.me%2FNotorgames_0 - 7 %F0%9F%8F%B3%EF%B8%8F
 
