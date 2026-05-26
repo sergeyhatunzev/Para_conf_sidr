@@ -1,4 +1,4 @@
-#ОСТАЛОСЬ 7 С УНИКАЛЬНЫМ ip
+#ОСТАЛОСЬ 4 С УНИКАЛЬНЫМ ip
 
 
     #profile-update-interval: 1
@@ -6,24 +6,15 @@
     #support-url: https://t.me/FullNOOBS
     #profile-web-page-url: https://t.me/FullNOOBS
     #announce: Эта подписка создана морти для его друзей дальнешее распространение подписки карается баном!
-    # работает 4 дня 17 часов 30 минут 11 секунд (unixtime 1779394013)
-vless://2127747d-27b5-45c1-9187-b8648d9c9c6a@37.9.5.127:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=vZ8yVR6ZkYZD101aLewZzl3skS965ZYj03wMxxK0zgU&sid=27e53bbcab7593d7&sni=smartcaptcha.yandexcloud.net&spx=/#0488 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+    # работает 3 дня 6 часов 8 минут 55 секунд (unixtime 1779541673)
+vless://60d0630c-8ac4-436d-ad2c-b798b63e1c69@134.17.94.179:443?security=reality&encryption=none&pbk=Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs&headerType=none&fp=firefox&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=by.nodes.rocketnetwork.ru&sid=428ef87fd47a3a32#[618ms BY BY  @vlesstrojan]
 
-# работает 3 дня 0 часов 29 минут 11 секунд (unixtime 1779541673)
-vless://60d0630c-8ac4-436d-ad2c-b798b63e1c69@134.17.94.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=by.nodes.rocketnetwork.ru&fp=firefox&pbk=Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs&sid=428ef87fd47a3a32&type=tcp&headerType=none#%F0%9F%87%B2%F0%9F%87%AA%20%5B%D0%91%D0%A1-VL%5D%20%D0%A7%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D0%B8%D1%8F%20%2317311%20%7C%20%D0%A0%D0%BE%D1%81%D0%A2%D1%83%D0%BD%D0%BD%D0%B5%D0%BB%D1%8C
-
-# работает 2 дня 1 час 52 минуты 14 секунд (unixtime 1779623090)
+# работает 2 дня 7 часов 31 минута 58 секунд (unixtime 1779623090)
 vless://16878c6c-ff06-4ace-a846-d23809dd7c21@66.90.90.182:8443?security=reality&type=tcp&headerType=&path=&host=&flow=xtls-rprx-vision&sni=aliusfilms.ru&fp=firefox&pbk=cynncQk7kKzEQaExg-FN7pMqFaZPSXEi_Ggy7AXXmVg&sid=2356d1ae4b
 
-# работает 1 день 19 часов 13 минут 6 секунд (unixtime 1779647038)
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=none&security=none&type=tcp#🪲37@oneclickvpnkeys
+# работает 2 дня 0 часов 52 минуты 50 секунд (unixtime 1779647038)
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=none&security=none&type=tcp#%F0%9F%AA%B220@oneclickvpnkeys
 
-# работает 18 часов 58 минут 44 секунды (unixtime 1779734300)
-vless://05af36dd-db51-42e6-8bf6-15a013ee0eb3@109.120.189.31:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=Cb6Fi86wbJ_7yMjvI1axXNek55YpyDje9HbMgIoimR8&sni=id.vk.ru#1884 | 🇷🇺 Russia | 🏳️ SNI-VK | VLESS | TG: @YoutubeUnBlockRu
-
-# работает 5 часов 53 минуты 57 секунд (unixtime 1779781387)
-vless://4b9de58d-9546-408c-93cc-4b531bfaca7d@84.201.177.150:33443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=web.max.ru&pbk=1XXZDoBQsD2mgrUnbfUaNU_6jsPkQSA-3p26-27ErBA&sid=b2fb0c349b4ba371# By EbraSha
-
-# работает 5 часов 53 минуты 57 секунд (unixtime 1779781387)
-vless://4eeffe45-b127-4282-854f-00e008419c47@84.201.160.68:2445?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=akashi.vk-portal.net&pbk=5w9AftPH_705ynMzcG03D3z61O1qegNp6WFL6jOXxRA&sid=e035146d93da51a9&spx=%2F#357.%20%F0%9F%87%B5%F0%9F%87%B1%20VLESS%20%7C%20SNI%3A%20akashi.vk-portal.net%20%7C%20CIDR%3A%20VK%20%7C%20TG%3A%20%40wlrustg
+# работает 5 часов 39 минут 44 секунды (unixtime 1779802624)
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=none&type=raw&headerType=none&security=none# By EbraSha
 
