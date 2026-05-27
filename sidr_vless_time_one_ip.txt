@@ -6,18 +6,18 @@
     #support-url: https://t.me/FullNOOBS
     #profile-web-page-url: https://t.me/FullNOOBS
     #announce: Эта подписка создана морти для его друзей дальнешее распространение подписки карается баном!
-    # работает 3 дня 11 часов 54 минуты 21 секунда (unixtime 1779541673)
-vless://60d0630c-8ac4-436d-ad2c-b798b63e1c69@134.17.94.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=by.nodes.rocketnetwork.ru&fp=firefox&pbk=Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs&sid=428ef87fd47a3a32&type=tcp&headerType=none#%F0%9F%87%B2%F0%9F%87%AA%20%5B%D0%91%D0%A1-VL%5D%20%D0%A7%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D0%B8%D1%8F%20%2317311%20%7C%20%D0%A0%D0%BE%D1%81%D0%A2%D1%83%D0%BD%D0%BD%D0%B5%D0%BB%D1%8C
+    # работает 3 дня 18 часов 46 минут 59 секунд (unixtime 1779541673)
+vless://60d0630c-8ac4-436d-ad2c-b798b63e1c69@134.17.94.179:443?security=reality&encryption=none&pbk=Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs&headerType=none&fp=firefox&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=by.nodes.rocketnetwork.ru&sid=428ef87fd47a3a32#[618ms BY BY  @vlesstrojan]
 
-# работает 2 дня 13 часов 17 минут 24 секунды (unixtime 1779623090)
+# работает 2 дня 20 часов 10 минут 2 секунды (unixtime 1779623090)
 vless://16878c6c-ff06-4ace-a846-d23809dd7c21@66.90.90.182:8443?security=reality&type=tcp&headerType=&path=&host=&flow=xtls-rprx-vision&sni=aliusfilms.ru&fp=firefox&pbk=cynncQk7kKzEQaExg-FN7pMqFaZPSXEi_Ggy7AXXmVg&sid=2356d1ae4b
 
-# работает 2 дня 6 часов 38 минут 16 секунд (unixtime 1779647038)
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?security=none&encryption=none&headerType=none&type=tcp#@v2rayng_vpn403
+# работает 12 часов 38 минут 4 секунды (unixtime 1779823008)
+vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?encryption=none&type=tcp&security=reality&fp=firefox&sni=www.google.com&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7# By EbraSha
 
-# работает 11 часов 25 минут 10 секунд (unixtime 1779802624)
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=none&type=raw&headerType=none&security=none#[🇷🇺] [vl-no-ra] [260526-021040.476]
+# работает 6 часов 52 минуты 38 секунд (unixtime 1779843734)
+vless://2127747d-27b5-45c1-9187-b8648d9c9c6a@37.9.5.127:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=vZ8yVR6ZkYZD101aLewZzl3skS965ZYj03wMxxK0zgU&sid=27e53bbcab7593d7&sni=smartcaptcha.yandexcloud.net&spx=/#0294 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
 
-# работает 5 часов 45 минут 26 секунд (unixtime 1779823008)
-vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&security=reality&fp=firefox&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7&sni=www.google.com#0794 | 🇷🇺 Russia | VLESS | TG: @YoutubeUnBlockRu
+# работает 6 часов 52 минуты 38 секунд (unixtime 1779843734)
+vless://9ebab373-19fe-4535-aa95-4e348ea300f1@212.193.155.32:443?encryption=none&type=ws&security=tls&path=%2Fws&sni=s28315.cdn.ngenix.net# By EbraSha 🎯
 
