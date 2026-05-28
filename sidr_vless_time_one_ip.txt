@@ -6,18 +6,18 @@
     #support-url: https://t.me/FullNOOBS
     #profile-web-page-url: https://t.me/FullNOOBS
     #announce: Эта подписка создана морти для его друзей дальнешее распространение подписки карается баном!
-    # работает 3 дня 7 часов 31 минута 44 секунды (unixtime 1779623090)
+    # работает 3 дня 13 часов 34 минуты 56 секунд (unixtime 1779623090)
 vless://16878c6c-ff06-4ace-a846-d23809dd7c21@66.90.90.182:8443?security=reality&type=tcp&headerType=&path=&host=&flow=xtls-rprx-vision&sni=aliusfilms.ru&fp=firefox&pbk=cynncQk7kKzEQaExg-FN7pMqFaZPSXEi_Ggy7AXXmVg&sid=2356d1ae4b
 
-# работает 2 дня 16 часов 59 минут 48 секунд (unixtime 1779675406)
-vless://f4d74570-934c-44a2-9639-73598dde77de@134.17.94.179:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=by.nodes.rocketnetwork.ru&fp=firefox&security=reality&pbk=Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs&sid=428ef87fd47a3a32#%F0%9F%87%A7%F0%9F%87%BE%20Belarus%2C%20Minsk%20%7C%20%5BBL%5D
+# работает 6 часов 3 минуты 12 секунд (unixtime 1779909394)
+vless://9ebab373-19fe-4535-aa95-4e348ea300f1@78.41.110.238:443?encryption=none&type=ws&security=tls&path=%2Fws&host=s28315.cdn.ngenix.net&sni=s28315.cdn.ngenix.net&alpn=h2%2Chttp%2F1.1#%F0%9F%87%AB%F0%9F%87%B7%20France%20%E2%80%94%20%23160
 
-# работает 11 часов 21 минута 42 секунды (unixtime 1779868492)
-vless://30f00fcd-ca71-4df9-8d0f-c10cedf74f32@51.250.102.172:443?security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=r2z0sgaDnhJivtK4ptR1KytLtnkgF_qKEeGUEzalo0M&sid=3f3e9c3b3a3d3a33&sni=ads.x5.ru#0310 | 🇷🇺 Russia | 🏳️ CIDR-Yandex | 🏳️ SNI-X5 | VLESS | TG: @YoutubeUnBlockRu
+# работает 6 часов 3 минуты 12 секунд (unixtime 1779909394)
+vless://9ebab373-19fe-4535-aa95-4e348ea300f1@46.235.185.25:443?encryption=none&type=ws&security=tls&path=%2Fws&host=s28315.cdn.ngenix.net&sni=s28315.cdn.ngenix.net#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%5B%2ACIDR%5D
 
-# работает 11 часов 21 минута 42 секунды (unixtime 1779868492)
-vless://3d344acb-be0c-4275-8f3d-f4243939c5e4@158.160.235.245:2083?type=tcp&headerType=none&security=reality&encryption=none&sni=mail.yandex.ru&fp=firefox&pbk=GBq78LaVzdcarcTEGJV0sOIa32JlYQoCdsStkQfVmwo&sid=abcdef1234567890&flow=xtls-rprx-vision# By EbraSha 🪖
+# работает 6 часов 3 минуты 12 секунд (unixtime 1779909394)
+vless://9ebab373-19fe-4535-aa95-4e348ea300f1@212.193.155.32:443?encryption=none&security=tls&sni=s28315.cdn.ngenix.net&insecure=0&allowInsecure=0&type=ws&path=/ws#🇩🇪32218 | ⚡️Telegram = t.me/SOSkeyNET
 
-# работает 5 часов 41 минута 3 секунды (unixtime 1779888931)
-vless://2690b1e5-7893-4e9f-a609-603b632bc11a@84.201.173.163:443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=max.ru&pbk=66kZLshj9fxAIQA7NsABohNwgiOcY71enc6as_Frqw0&sid=3c1523da43287ec4&spx=%2F#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%E2%80%94%20%2329
+# работает 6 часов 3 минуты 12 секунд (unixtime 1779909394)
+vless://196896b8-29cd-4437-b4f7-dad1a29f1ef8@158.160.199.1:6443/?flow=xtls-rprx-vision&fp=firefox&pbk=vnT4OJUgZ1YdGBSyzXN6EWctKLH0qtqA81OMgOvNqT4&security=reality&sid=ad7dab264a323acb&sni=apiok.ru&type=tcp# By EbraSha 🌌
 
